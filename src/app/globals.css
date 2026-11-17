@@ -210,9 +210,9 @@
 
 @layer utilities {
   .travel-display {
-    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "URW Palladio L", Georgia, serif;
-    font-weight: 600;
-    letter-spacing: 0;
+    font-family: var(--font-display), "Iowan Old Style", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   .chiang-mai-marquee {
@@ -310,3 +310,79 @@
   }
 
 }
+
+/* ---- Tee Off luxury layer (unlayered so it wins over component utilities) ---- */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #9a7b3c;
+}
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.eyebrow-center { justify-content: center; }
+.eyebrow-center::after {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.eyebrow-light { color: #d9bf82; }
+
+.btn-lux,
+.btn-lux-gold,
+.btn-lux-ghost,
+.btn-lux-ghost-light {
+  height: auto;
+  min-height: 3rem;
+  padding: 0.85rem 1.9rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.btn-lux { background: #14382a; color: #f6efe0; border: 1px solid rgba(201, 168, 90, 0.55); }
+.btn-lux:hover { background: #1f4c39; color: #fff; }
+.btn-lux-gold { background: #c9a85a; color: #10291f; border: 1px solid #c9a85a; }
+.btn-lux-gold:hover { background: #d8bb73; color: #10291f; }
+.btn-lux-ghost { background: transparent; color: #14382a; border: 1px solid rgba(20, 56, 42, 0.28); }
+.btn-lux-ghost:hover { background: #14382a; color: #f6efe0; border-color: #14382a; }
+.btn-lux-ghost-light { background: rgba(255, 255, 255, 0.04); color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); backdrop-filter: blur(6px); }
+.btn-lux-ghost-light:hover { background: #fff; color: #14382a; border-color: #fff; }
+
+.lux-card {
+  border-radius: 0.375rem;
+  background: #fffdf8;
+  border: 1px solid rgba(20, 56, 42, 0.09);
+  box-shadow: 0 1px 0 rgba(20, 56, 42, 0.03);
+  transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+}
+.lux-card:hover {
+  border-color: rgba(201, 168, 90, 0.45);
+  box-shadow: 0 30px 60px -36px rgba(16, 41, 31, 0.45);
+}
+.lux-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 90, 0.6);
+  color: #14382a;
+  background: transparent;
+}
+.lux-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 168, 90, 0.7), transparent); }

@@ -15,9 +15,10 @@ const mobileLinks: { href: string; label: string; external?: boolean }[] = [
 
 type MobileNavMenuProps = {
     menuAlign?: 'left' | 'right';
+    light?: boolean;
 };
 
-const MobileNavMenu = ({ menuAlign = 'right' }: MobileNavMenuProps) => {
+const MobileNavMenu = ({ menuAlign = 'right', light = false }: MobileNavMenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const Icon = isOpen ? X : Menu;
 
@@ -29,14 +30,14 @@ const MobileNavMenu = ({ menuAlign = 'right' }: MobileNavMenuProps) => {
                 aria-expanded={isOpen}
                 aria-controls='mobile-site-menu'
                 onClick={() => setIsOpen((current) => !current)}
-                className='flex size-10 items-center justify-center text-[#173247] transition hover:text-[#a1612a]'>
+                className={`flex size-10 items-center justify-center transition ${light ? 'text-white' : 'text-[#14382a]'} hover:text-[#c9a85a]`}>
                 <Icon className='size-5' />
             </button>
 
             {isOpen ? (
                 <div
                     id='mobile-site-menu'
-                    className={`absolute top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-lg border border-[#dfcfb4] bg-[#fffaf3]/96 p-2 shadow-2xl backdrop-blur-xl ${
+                    className={`absolute top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-md border border-[#14382a]/10 bg-[#f8f5ee]/97 p-2 shadow-2xl backdrop-blur-xl ${
                         menuAlign === 'left' ? 'left-0' : 'right-0'
                     }`}>
                     <div className='grid gap-1'>
@@ -47,10 +48,10 @@ const MobileNavMenu = ({ menuAlign = 'right' }: MobileNavMenuProps) => {
                                 target={item.external ? '_blank' : undefined}
                                 rel={item.external ? 'noopener noreferrer' : undefined}
                                 onClick={() => setIsOpen(false)}
-                                className={`rounded-md px-4 py-3 text-sm font-semibold transition ${
+                                className={`rounded px-4 py-3 text-[0.72rem] font-semibold tracking-[0.18em] uppercase transition ${
                                     item.external
-                                        ? 'bg-[#c97932] text-white hover:bg-[#b46c2e]'
-                                        : 'text-[#173247] hover:bg-[#f2dfc4] hover:text-[#a1612a]'
+                                        ? 'mt-1 bg-[#14382a] text-center text-[#f6efe0] hover:bg-[#1f4c39]'
+                                        : 'text-[#14382a] hover:bg-[#efe9dc]'
                                 }`}>
                                 {item.label}
                             </Link>

@@ -53,9 +53,13 @@ export const golfCourses: GolfCourse[] = [
         format: '2 × 9 holes',
         playOptions: 'Walking only',
         drivingRange: false,
-        description:
-            'A relaxed budget round on a compact nine-hole layout. Walk the course twice for a full 18 holes.',
-        gallery: [{ caption: 'Wide fairway' }, { caption: 'Approach to a green' }, { caption: 'Walking path' }],
+        description: 'A relaxed budget round on a compact nine-hole layout. Walk the course twice for a full 18 holes.',
+        image: '/images/golf/hang-dong/cover.webp',
+        gallery: [
+            { caption: 'Lake and palms', src: '/images/golf/hang-dong/cover.webp' },
+            { caption: 'Approach to a green' },
+            { caption: 'Walking path' }
+        ],
         priceStatus: 'draft',
         packages: [
             {
@@ -76,7 +80,12 @@ export const golfCourses: GolfCourse[] = [
         drivingRange: false,
         description:
             'A compact nine-hole course with enough challenge to make the second loop interesting. Walk or share a cart.',
-        gallery: [{ caption: 'Fairway' }, { caption: 'Green and approach' }, { caption: 'Golf cart' }],
+        image: '/images/golf/sand-creek/cover.webp',
+        gallery: [
+            { caption: 'Green and approach', src: '/images/golf/sand-creek/cover.webp' },
+            { caption: 'Fairway' },
+            { caption: 'Golf cart' }
+        ],
         priceStatus: 'draft',
         packages: [
             {
@@ -102,7 +111,12 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A convenient city course. Warm up at the driving range before playing two loops of nine.',
-        gallery: [{ caption: 'Fairway' }, { caption: 'Green' }, { caption: 'Driving range' }],
+        image: '/images/golf/pimantip/cover.webp',
+        gallery: [
+            { caption: 'Lake and mountain view', src: '/images/golf/pimantip/cover.webp' },
+            { caption: 'Green' },
+            { caption: 'Driving range' }
+        ],
         priceStatus: 'draft',
         packages: [
             {
@@ -123,7 +137,12 @@ export const golfCourses: GolfCourse[] = [
         drivingRange: true,
         description:
             'A long-established Chiang Mai club popular with local golfers. Play a classic round close to town.',
-        gallery: [{ caption: 'Tee-box view' }, { caption: 'Fairway and green' }, { caption: 'Driving range' }],
+        image: '/images/golf/lanna/cover.webp',
+        gallery: [
+            { caption: 'Tree-lined fairway', src: '/images/golf/lanna/cover.webp' },
+            { caption: 'Tee-box view' },
+            { caption: 'Driving range' }
+        ],
         priceStatus: 'draft',
         packages: [
             {
@@ -142,12 +161,12 @@ export const golfCourses: GolfCourse[] = [
         format: '18 holes',
         playOptions: 'Cart included',
         drivingRange: true,
-        description:
-            'A scenic Mae On resort course with mountain views and well-placed bunkers that reward accuracy.',
+        description: 'A scenic Mae On resort course with mountain views and well-placed bunkers that reward accuracy.',
+        image: '/images/golf/highlands/cover.webp',
         gallery: [
-            { caption: 'Mountain-backed fairway' },
-            { caption: 'Bunker-framed green' },
-            { caption: 'Driving range' }
+            { caption: 'Mountain-backed fairway', src: '/images/golf/highlands/mountain-fairway.webp' },
+            { caption: 'Bunker-framed green', src: '/images/golf/highlands/bunker-green.webp' },
+            { caption: 'Sunrise over the course', src: '/images/golf/highlands/sunrise.webp' }
         ],
         // TODO: confirm before publishing
         priceStatus: 'proposed',
@@ -168,9 +187,13 @@ export const golfCourses: GolfCourse[] = [
         format: '18 holes',
         playOptions: 'Cart included',
         drivingRange: true,
-        description:
-            'A premium par-72 course in Mae Rim with palm-lined fairways, mountain views and water hazards.',
-        gallery: [{ caption: 'Palm-lined fairway' }, { caption: 'Water hole' }, { caption: 'Driving range' }],
+        description: 'A premium par-72 course in Mae Rim with palm-lined fairways, mountain views and water hazards.',
+        image: '/images/golf/summit-green-valley/cover.webp',
+        gallery: [
+            { caption: 'Palm-lined fairway', src: '/images/golf/summit-green-valley/palm-lined-fairway.webp' },
+            { caption: 'Water hole', src: '/images/golf/summit-green-valley/water-hole.webp' },
+            { caption: 'Clubhouse', src: '/images/golf/summit-green-valley/clubhouse.webp' }
+        ],
         // TODO: confirm before publishing
         priceStatus: 'proposed',
         packages: [
@@ -192,10 +215,13 @@ export const golfCourses: GolfCourse[] = [
         drivingRange: true,
         description:
             'Our flagship championship golf day. Set among mountains, Alpine hosted the Chiangmai Golf Classic.',
+        image: '/images/golf/alpine/cover.webp',
         gallery: [
-            { caption: 'Mountain panorama' },
-            { caption: 'Standout hole' },
-            { caption: 'Clubhouse and driving range' }
+            { caption: 'Lakeside green and hotel', src: '/images/golf/alpine/lakeside-green.webp' },
+            { caption: 'Lake and bunkers', src: '/images/golf/alpine/lake-bunkers.webp' },
+            { caption: 'Mountain panorama', src: '/images/golf/alpine/mountain-panorama.webp' },
+            { caption: 'Driving range', src: '/images/golf/alpine/driving-range.webp' },
+            { caption: 'Clubhouse', src: '/images/golf/alpine/clubhouse.webp' }
         ],
         priceStatus: 'draft',
         packages: [
@@ -244,3 +270,72 @@ export const formatLeadPrice = (course: GolfCourse) => {
 
 export const getCourseEnquiryLink = (course: GolfCourse) =>
     whatsappWithText(`Hi, I would like to check tee times for ${course.name}.`);
+
+// ---- Golf holiday packages (per week) ----
+
+export type HolidayTier = 'essential' | 'classic' | 'premium';
+export const roundsPerWeekOptions = [2, 3, 4] as const;
+export type RoundsPerWeek = (typeof roundsPerWeekOptions)[number];
+
+export const holidayTiers: {
+    id: HolidayTier;
+    name: string;
+    tagline: string;
+    /** Course slugs in order of preference; the first N are used for N rounds. */
+    courses: string[];
+}[] = [
+    {
+        id: 'essential',
+        name: 'Essential',
+        tagline: 'Relaxed, great-value rounds close to town.',
+        courses: ['sand-creek', 'hang-dong', 'pimantip', 'lanna']
+    },
+    {
+        id: 'classic',
+        name: 'Classic',
+        tagline: 'Classic Chiang Mai clubs plus a mountain resort course.',
+        courses: ['lanna', 'highlands', 'pimantip', 'summit-green-valley']
+    },
+    {
+        id: 'premium',
+        name: 'Premium',
+        tagline: 'The region’s championship and resort courses.',
+        courses: ['alpine', 'summit-green-valley', 'highlands', 'lanna']
+    }
+];
+
+const findCourse = (slug: string) => golfCourses.find((course) => course.slug === slug)!;
+
+/** Cheapest package rate per golfer for a given group size (1–4). */
+const roundPrice = (course: GolfCourse, groupSize: 1 | 2 | 3 | 4) =>
+    Math.min(...course.packages.map((pkg) => pkg.perGolfer[groupSize - 1]));
+
+export const getHolidayPackage = (tierId: HolidayTier, rounds: RoundsPerWeek) => {
+    const tier = holidayTiers.find((t) => t.id === tierId)!;
+    const courses = tier.courses.slice(0, rounds).map(findCourse);
+    const perGolfer = (groupSize: 1 | 2 | 3 | 4) => courses.reduce((sum, c) => sum + roundPrice(c, groupSize), 0);
+
+    return {
+        tier,
+        rounds,
+        courses,
+        golfFromPerGolfer4: perGolfer(4),
+        golfFromPerGolfer2: perGolfer(2),
+        includesProposedPrices: courses.some((c) => c.priceStatus === 'proposed')
+    };
+};
+
+// ---- Sightseeing day trips (prices from Chiang Mai Driver tours: private car + driver for the group) ----
+
+export const sightseeingTrips = [
+    { id: 'doi-inthanon', name: 'Doi Inthanon', price: 3200 },
+    { id: 'sticky-waterfall', name: 'Doi Suthep & Sticky Waterfall', price: 2400 },
+    { id: 'chiang-rai', name: 'Chiang Rai & White Temple', price: 3400 },
+    { id: 'temples', name: 'Temple & Culture Tour', price: 1900 },
+    { id: 'half-day', name: 'Half-day mountain temples', price: 1200 },
+    { id: 'grand-canyon', name: 'Chiang Mai Grand Canyon', price: 1500 },
+    { id: 'own-route', name: 'Your own route (8 hours)', price: 2700 }
+] as const;
+
+export type SightseeingTripId = (typeof sightseeingTrips)[number]['id'];
+export const getTrip = (id: string) => sightseeingTrips.find((t) => t.id === id) ?? sightseeingTrips[0];

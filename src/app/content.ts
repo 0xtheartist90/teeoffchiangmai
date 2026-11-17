@@ -71,17 +71,20 @@ export const faqs = [
 export const sightseeing = [
     {
         title: 'Doi Inthanon',
-        text: 'Spend a day on Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.',
+        text: 'Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.',
+        price: 3200,
         image: '/images/holidays/doi-inthanon.webp'
     },
     {
         title: 'Sticky Waterfall',
-        text: 'Climb the limestone cascades of Bua Tong, a fun half-day between rounds.',
+        text: 'Climb the limestone cascades of Bua Tong, combined with Doi Suthep temple.',
+        price: 2400,
         image: '/images/holidays/sticky-waterfall.webp'
     },
     {
         title: 'White Temple, Chiang Rai',
-        text: 'Combine a round in Chiang Rai with a visit to Wat Rong Khun and the city’s other highlights.',
+        text: 'Wat Rong Khun and the Big Buddha on a full day trip to Chiang Rai.',
+        price: 3400,
         image: '/images/holidays/white-temple.webp'
     }
 ];

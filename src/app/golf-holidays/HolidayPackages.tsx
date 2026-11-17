@@ -1,0 +1,120 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+
+import { ArrowUpRight } from 'lucide-react';
+
+import CourseImage from '@/app/CourseImage';
+import type { RoundsPerWeek } from '@/app/golf-data';
+import { formatThb, getHolidayPackage, holidayTiers, roundsPerWeekOptions, whatsappWithText } from '@/app/golf-data';
+
+
+const HolidayPackages = () => {
+    const [rounds, setRounds] = useState<RoundsPerWeek>(3);
+
+    return (
+        <div>
+            <div className='flex flex-col items-center gap-4'>
+                <p className='text-[0.66rem] font-semibold tracking-[0.3em] text-slate-500 uppercase'>Rounds per week</p>
+                <div role='tablist' aria-label='Rounds per week' className='inline-flex rounded-full border border-[#14382a]/15 bg-white p-1'>
+                    {roundsPerWeekOptions.map((option) => (
+                        <button
+                            key={option}
+                            type='button'
+                            role='tab'
+                            aria-selected={rounds === option}
+                            onClick={() => setRounds(option)}
+                            className={`rounded-full px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.18em] uppercase transition sm:px-7 ${
+                                rounds === option ? 'bg-[#14382a] text-[#f6efe0]' : 'text-[#14382a]/70 hover:text-[#14382a]'
+                            }`}>
+                            {option}× golf
+                        </button>
+                    ))}
+                </div>
+                <p className='text-center text-sm text-slate-500'>
+                    {rounds} rounds · {7 - rounds} days to explore
+                </p>
+            </div>
+
+            <div className='mt-10 grid gap-5 lg:grid-cols-3'>
+                {holidayTiers.map((tier) => {
+                    const pkg = getHolidayPackage(tier.id, rounds);
+                    const featured = tier.id === 'classic';
+                    const enquiry = whatsappWithText(
+                        `Hi, I'm interested in the ${tier.name} golf holiday with ${rounds} rounds per week (${pkg.courses
+                            .map((c) => c.shortName)
+                            .join(', ')}). Our dates and group size are: `
+                    );
+
+                    return (
+                        <article
+                            key={tier.id}
+                            className={`lux-card relative flex flex-col overflow-hidden ${featured ? 'lg:-mt-4 lg:mb-4 ring-1 ring-[#c9a85a]/70' : ''}`}>
+                            <div className='relative h-44'>
+                                <CourseImage src={pkg.courses[0]?.image} alt={pkg.courses[0]?.name ?? tier.name} className='absolute inset-0' />
+                                <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,20,0.1)_0%,rgba(10,28,20,0.75)_100%)]' />
+                                {featured ? (
+                                    <span className='absolute top-4 right-4 rounded-full bg-[#c9a85a] px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] text-[#10291f] uppercase'>
+                                        Most popular
+                                    </span>
+                                ) : null}
+                                <div className='absolute inset-x-6 bottom-5 text-white'>
+                                    <p className='text-[0.6rem] font-semibold tracking-[0.3em] text-[#e2c886] uppercase'>
+                                        {rounds} rounds · 1 week
+                                    </p>
+                                    <h3 className='travel-display mt-1 text-4xl leading-none'>{tier.name}</h3>
+                                </div>
+                            </div>
+
+                            <div className='flex flex-1 flex-col p-6 sm:p-7'>
+                                <p className='text-[0.92rem] leading-6 text-slate-600 italic'>{tier.tagline}</p>
+
+                                <div className='mt-5 border-y border-[#14382a]/10 py-4'>
+                                    <p className='text-[0.6rem] font-semibold tracking-[0.28em] text-[#9a7b3c] uppercase'>
+                                        Golf from
+                                    </p>
+                                    <p className='travel-display mt-1 text-[2.4rem] leading-none text-[#14382a]'>
+                                        {formatThb(pkg.golfFromPerGolfer4)}
+                                    </p>
+                                    <p className='mt-1.5 text-xs leading-5 text-slate-500'>
+                                        per golfer, group of 4 · {formatThb(pkg.golfFromPerGolfer2)} per golfer for 2
+                                    </p>
+                                </div>
+
+                                <p className='mt-5 text-[0.6rem] font-semibold tracking-[0.28em] text-slate-500 uppercase'>
+                                    Your courses
+                                </p>
+                                <ol className='mt-3 grid gap-2.5'>
+                                    {pkg.courses.map((course, index) => (
+                                        <li key={course.slug} className='flex items-baseline gap-3'>
+                                            <span className='travel-display w-5 flex-none text-lg text-[#c9a85a] italic'>{index + 1}</span>
+                                            <span className='flex-1 text-[0.92rem] text-[#14382a]'>{course.name}</span>
+                                        </li>
+                                    ))}
+                                </ol>
+
+
+                                <Link
+                                    href={enquiry}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    className={`${featured ? 'btn-lux-gold' : 'btn-lux'} mt-7 inline-flex items-center justify-center gap-2`}>
+                                    Plan this holiday
+                                    <ArrowUpRight className='size-3.5' />
+                                </Link>
+                            </div>
+                        </article>
+                    );
+                })}
+            </div>
+
+            <p className='mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-slate-500'>
+                Golf price per golfer: green fees and hotel transfers on golf days. Hotels and sightseeing are quoted for your
+                group.
+            </p>
+        </div>
+    );
+};
+
+export default HolidayPackages;

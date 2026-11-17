@@ -1,299 +1,164 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 
-import { ArrowRight, ChevronDown, Flag, Footprints, Target } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CalendarCheck, CarFront, MessageCircle } from 'lucide-react';
 
 import CourseImage from '@/app/CourseImage';
-import PriceTable from '@/app/PriceTable';
 import RatingStars from '@/app/RatingStars';
 import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
-import { faqs, services, sightseeing, steps, whyIntro } from '@/app/content';
-import { bookingLink, formatLeadPrice, getCourseEnquiryLink, golfCourses, holidayLink } from '@/app/golf-data';
-import { beigeSection, mountainSection, patternedLight } from '@/app/section-backgrounds';
+import { services } from '@/app/content';
+import {
+    bookingLink,
+    formatThb,
+    getHolidayPackage,
+    golfCourses,
+    holidayTiers
+} from '@/app/golf-data';
+import { beigeSection, patternedLight } from '@/app/section-backgrounds';
 import { Button } from '@/registry/new-york-v4/ui/button';
 
-/**
- * Hero media. Drop the drone clip and still into /public/images/golf/ with these names.
- * Until then the poster falls back to the mountain photo.
- */
-const heroVideo = { mp4: '/images/golf/hero-drone.mp4', webm: '/images/golf/hero-drone.webm' };
-const heroStill = '/images/how-it-works.webp';
+/** Hero video (from the Birdiez site). MP4 first for Safari/iPhone, WebM as fallback. */
+const heroVideo = { mp4: '/images/golf/hero.mp4', webm: '/images/golf/hero.webm' };
+const heroPoster = '/images/golf/hero-poster.webp';
 
-const holidayMarquee = [
-    '/images/holidays/doi-inthanon.webp',
-    '/images/marquee/pexels-quintingellar-8258340.webp',
-    '/images/holidays/sticky-waterfall.webp',
-    '/images/marquee/pexels-jean-papillon-28600264.webp',
-    '/images/holidays/white-temple.webp',
-    '/images/marquee/pexels-vishalcross-37250801.webp'
-];
+/** Marquee strip: course photos (approved by the clubs). */
+const courseMarquee = [
+    '/images/golf/alpine/cover.webp',
+    '/images/golf/hang-dong/cover.webp',
+    '/images/golf/summit-green-valley/palm-lined-fairway.webp',
+    '/images/golf/lanna/cover.webp',
+    '/images/golf/highlands/mountain-fairway.webp',
+    '/images/golf/pimantip/cover.webp',
+    '/images/golf/alpine/mountain-panorama.webp',
+    '/images/golf/sand-creek/cover.webp',
+    '/images/golf/summit-green-valley/water-hole.webp',
+    '/images/golf/highlands/bunker-green.webp'
+]
+
+const shortSteps = [
+    { title: 'Tell us your plan', text: 'Dates, golfers, hotel and courses.', icon: MessageCircle },
+    { title: 'We arrange it', text: 'Tee times, transfers, carts, caddies or clubs.', icon: CalendarCheck },
+    { title: 'We pick you up', text: 'Hotel to course, and back again.', icon: CarFront }
+]
 
 const HomePage = () => {
-    const [activeIndex, setActiveIndex] = useState(golfCourses.length - 1);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const course = golfCourses[activeIndex] ?? golfCourses[0];
-
-    const move = (direction: -1 | 1) =>
-        setActiveIndex((current) => (current + direction + golfCourses.length) % golfCourses.length);
 
     return (
-        <main id='top' className='bg-[#f8f3ea] text-slate-900'>
-            <SiteHeader />
+        <main id='top' className='bg-[#f8f5ee] text-slate-900'>
+            <SiteHeader overlay />
 
             {/* 1. Hero */}
-            <section className='relative isolate min-h-[88svh] overflow-hidden bg-[#14382a]'>
-                <img
-                    alt='Golf course with the mountains of Northern Thailand'
-                    className='absolute inset-0 h-full w-full object-cover sm:hidden'
-                    src={heroStill}
-                />
+            <section className='relative isolate -mt-[73px] min-h-[100svh] overflow-hidden bg-[#0f2a1f] sm:-mt-[81px]'>
                 <video
-                    className='absolute inset-0 hidden h-full w-full object-cover sm:block'
+                    className='absolute inset-0 h-full w-full object-cover'
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload='metadata'
-                    poster={heroStill}>
+                    poster={heroPoster}>
                     <source src={heroVideo.mp4} type='video/mp4' />
                     <source src={heroVideo.webm} type='video/webm' />
                 </video>
-                <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(8,30,20,0.35)_0%,rgba(8,30,20,0.5)_45%,rgba(8,30,20,0.8)_100%)]' />
+                <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,20,0.45)_0%,rgba(10,28,20,0.1)_40%,rgba(10,28,20,0.7)_100%)]' />
 
-                <div className='relative mx-auto flex min-h-[88svh] max-w-6xl items-end justify-center px-4 pt-24 pb-14 text-center sm:items-center sm:px-6 sm:py-24 lg:px-8'>
-                    <div className='mx-auto flex max-w-4xl flex-col items-center text-white'>
-                        <p className='text-xs font-semibold tracking-[0.3em] text-[#e4c98a] uppercase sm:text-sm'>
-                            Tee Off Chiang Mai
-                        </p>
-                        <h1 className='travel-display mt-4 text-[2.6rem] leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl'>
-                            Play golf in Chiang Mai and Northern Thailand
+                <div className='relative mx-auto flex min-h-[100svh] max-w-6xl items-end px-5 pt-32 pb-16 sm:px-6 sm:pb-24 lg:px-8'>
+                    <div className='text-white'>
+                        <h1 className='travel-display text-[clamp(2.1rem,9.2vw,5.75rem)] leading-[0.95] whitespace-nowrap'>
+                            Play golf in <span className='text-[#e2c886] italic'>Chiang Mai</span>
                         </h1>
-                        <p className='mt-6 max-w-2xl text-base leading-7 text-white/86 sm:text-lg sm:leading-8'>
-                            Book your next round with Tee Off Chiang Mai. We’ll arrange your tee time, green fee, and private
-                            hotel pickup and drop-off. Need rental clubs or help arranging a caddie? Tell us when you book. All
-                            you need to focus on is your 18 holes.
+                        <p className='mt-5 text-base text-white/80 sm:text-lg'>
+                            Golf holidays with tee times, transfers and sightseeing — arranged for you.
                         </p>
-
-                        <div className='mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row'>
-                            <Button
-                                asChild
-                                size='lg'
-                                className='rounded-full border border-[#e4c98a] bg-[#2f7a4b] px-6 text-white hover:bg-[#276640]'>
-                                <Link href='/golf-tours'>
-                                    Explore Golf Tours
-                                    <ArrowRight className='size-4' />
-                                </Link>
-                            </Button>
-                            <Button
-                                asChild
-                                size='lg'
-                                variant='outline'
-                                className='rounded-full border-white/30 bg-white/10 px-6 text-white hover:bg-white/18 hover:text-white'>
-                                <Link href={bookingLink} target='_blank' rel='noopener noreferrer'>
-                                    Book on WhatsApp
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* 2. How it works */}
-            <section className='relative overflow-hidden py-14 sm:py-16' style={mountainSection}>
-                <div className='mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
-                    <div data-reveal='fade-up' className='max-w-2xl'>
-                        <p className='text-sm font-semibold tracking-[0.24em] text-[#8a6a2a] uppercase'>How it works</p>
-                        <h2 className='travel-display mt-3 text-4xl text-[#14382a] sm:text-5xl'>Three steps to the first tee</h2>
-                    </div>
-
-                    <div className='mt-8 grid gap-4 md:grid-cols-3'>
-                        {steps.map((step, index) => (
-                            <div
-                                key={step.title}
-                                data-reveal='step'
-                                style={{ transitionDelay: `${index * 120}ms` }}
-                                className='rounded-2xl border border-white/50 bg-[rgba(255,251,245,0.78)] p-6 shadow-[0_6px_18px_rgba(20,56,42,0.06)] backdrop-blur-sm'>
-                                <span className='flex size-10 items-center justify-center rounded-full border border-[#c9a85a] bg-[#14382a] text-xs font-semibold tracking-[0.14em] text-[#e4c98a]'>
-                                    0{index + 1}
-                                </span>
-                                <h3 className='mt-4 text-lg font-semibold text-[#14382a]'>{step.title}</h3>
-                                <p className='mt-2 text-sm leading-7 text-slate-700'>{step.text}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className='mt-8 flex justify-center'>
-                        <Button asChild size='lg' className='rounded-full bg-[#14382a] px-6 text-white hover:bg-[#0c2419]'>
-                            <Link href={bookingLink} target='_blank' rel='noopener noreferrer'>
-                                Book on WhatsApp
-                                <ArrowRight className='size-4' />
+                        <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
+                            <Link href='/golf-holidays' className='btn-lux-gold inline-flex items-center justify-center gap-2'>
+                                Explore Golf Holidays
+                                <ArrowRight className='size-3.5' />
                             </Link>
-                        </Button>
-                    </div>
-                </div>
-            </section>
-
-            {/* 3. Why choose us */}
-            <section className='relative py-14 sm:py-16' style={patternedLight}>
-                <div className='mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:px-8'>
-                    <div data-reveal='text-left'>
-                        <p className='text-sm font-semibold tracking-[0.24em] text-[#8a6a2a] uppercase'>Why choose us</p>
-                        <h2 className='travel-display mt-3 text-4xl text-[#14382a] sm:text-5xl'>
-                            Why choose Tee Off Chiang Mai?
-                        </h2>
-                        <p className='mt-4 text-base leading-8 text-slate-700'>{whyIntro}</p>
-                    </div>
-                    <div className='grid gap-4 sm:grid-cols-2'>
-                        {services.map(({ title, text, icon: Icon }, index) => (
-                            <div
-                                key={title}
-                                data-reveal='card'
-                                style={{ transitionDelay: `${index * 80}ms` }}
-                                className='rounded-lg border border-[#dfcfb4] bg-[#fffaf2]/86 p-5 shadow-sm'>
-                                <span className='flex size-11 items-center justify-center rounded-md bg-[#e6efe2] text-[#2f7a4b]'>
-                                    <Icon className='size-5' />
-                                </span>
-                                <h3 className='mt-3 text-base font-semibold text-[#14382a]'>{title}</h3>
-                                <p className='mt-1.5 text-sm leading-6 text-slate-600'>{text}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 4. Course showcase */}
-            <section id='courses' className='relative border-y border-[#e5d6c0] py-14 sm:py-16' style={beigeSection}>
-                <div className='mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
-                    <div data-reveal='fade-up' className='flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between'>
-                        <div className='max-w-2xl'>
-                            <p className='text-sm font-semibold tracking-[0.24em] text-[#8a6a2a] uppercase'>Golf day tours</p>
-                            <h2 className='travel-display mt-3 text-4xl text-[#14382a] sm:text-5xl'>Seven courses, one easy booking</h2>
+                            <Link
+                                href={bookingLink}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
+                                Book on WhatsApp
+                            </Link>
                         </div>
-                        <Link href='/golf-tours' className='inline-flex items-center gap-1.5 text-sm font-semibold text-[#2f7a4b]'>
-                            See all golf tours
-                            <ArrowRight className='size-4' />
+                    </div>
+                </div>
+            </section>
+
+            {/* 2. Golf holiday packages (main product) */}
+            <section className='relative py-20 sm:py-28' style={patternedLight}>
+                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                    <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+                        <div className='max-w-2xl'>
+                            <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.6rem]'>
+                                Golf holidays <span className='italic'>in Northern Thailand</span>
+                            </h2>
+                            <p className='mt-4 text-base text-slate-600'>
+                                A week of golf with sightseeing days in between. Choose 2, 3 or 4 rounds.
+                            </p>
+                        </div>
+                        <Link href='/golf-holidays#packages' className='btn-lux-ghost inline-flex w-fit items-center gap-2'>
+                            All packages
+                            <ArrowRight className='size-3.5' />
                         </Link>
                     </div>
 
-                    <div className='relative z-20 mt-6 rounded-lg border border-[#dcc6a5] bg-white/70 p-2 shadow-sm'>
-                        <div className='relative md:hidden'>
-                            <button
-                                type='button'
-                                aria-expanded={mobileMenuOpen}
-                                onClick={() => setMobileMenuOpen((open) => !open)}
-                                className='flex w-full items-center justify-between rounded-md border border-[#dcc6a5] bg-white px-4 py-3 text-left text-sm font-medium text-[#14382a]'>
-                                <span>{course.shortName}</span>
-                                <ChevronDown className={`size-4 transition-transform ${mobileMenuOpen ? 'rotate-180' : ''}`} />
-                            </button>
-                            {mobileMenuOpen ? (
-                                <div className='absolute inset-x-0 top-[calc(100%+0.5rem)] z-30 grid gap-1 rounded-md border border-[#dcc6a5] bg-white p-2 shadow-xl'>
-                                    {golfCourses.map((item, index) => (
-                                        <button
-                                            key={item.slug}
-                                            type='button'
-                                            onClick={() => {
-                                                setActiveIndex(index);
-                                                setMobileMenuOpen(false);
-                                            }}
-                                            className={`rounded-md px-3 py-3 text-left text-sm font-medium ${
-                                                index === activeIndex ? 'bg-[#14382a] text-white' : 'text-slate-700 hover:bg-[#f6efe2]'
-                                            }`}>
-                                            {item.shortName}
-                                        </button>
-                                    ))}
-                                </div>
-                            ) : null}
-                        </div>
-                        <div className='hidden gap-1.5 md:grid md:grid-cols-7'>
-                            {golfCourses.map((item, index) => (
-                                <button
-                                    key={item.slug}
-                                    type='button'
-                                    onClick={() => setActiveIndex(index)}
-                                    className={`rounded-md border px-2 py-2.5 text-xs font-medium leading-tight transition lg:text-sm ${
-                                        index === activeIndex
-                                            ? 'border-[#14382a] bg-[#14382a] text-white shadow-sm'
-                                            : 'border-transparent bg-white/80 text-slate-700 hover:border-[#c9a85a] hover:bg-white'
-                                    }`}>
-                                    {item.shortName}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                    <div className='mt-12 grid gap-5 md:grid-cols-3'>
+                        {holidayTiers.map((tier, index) => {
+                            const pkg = getHolidayPackage(tier.id, 3);
+                            const cover = pkg.courses[0]?.image;
 
-                    <article
-                        key={course.slug}
-                        className='mt-5 grid overflow-hidden rounded-lg border border-[#dfcfb4] bg-white shadow-sm lg:grid-cols-[1fr_1fr]'>
-                        <div className='relative min-h-[320px]'>
-                            <CourseImage
-                                src={course.image}
-                                alt={course.name}
-                                caption={course.image ? undefined : 'Course photo coming soon'}
-                                className='absolute inset-0'
-                            />
-                            <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(8,30,20,0)_30%,rgba(8,30,20,0.82)_100%)]' />
-                            <div className='absolute inset-x-5 bottom-5 text-white'>
-                                <RatingStars rating={course.rating} />
-                                <h3 className='travel-display mt-1 text-4xl leading-[0.95] sm:text-5xl'>{course.name}</h3>
-                                <p className='mt-3 text-sm text-white/86'>{formatLeadPrice(course)}</p>
-                            </div>
-                        </div>
-
-                        <div className='flex flex-col p-5 sm:p-7'>
-                            <div className='flex flex-wrap gap-2 text-xs font-semibold text-[#14382a]'>
-                                <span className='inline-flex items-center gap-1.5 rounded-full bg-[#f2ead9] px-3 py-1'>
-                                    <Flag className='size-3.5 text-[#8a6a2a]' />
-                                    {course.format}
-                                </span>
-                                <span className='inline-flex items-center gap-1.5 rounded-full bg-[#f2ead9] px-3 py-1'>
-                                    <Footprints className='size-3.5 text-[#8a6a2a]' />
-                                    {course.playOptions}
-                                </span>
-                                <span className='inline-flex items-center gap-1.5 rounded-full bg-[#f2ead9] px-3 py-1'>
-                                    <Target className='size-3.5 text-[#8a6a2a]' />
-                                    {course.drivingRange ? 'Driving range' : 'No driving range'}
-                                </span>
-                            </div>
-                            <p className='mt-4 text-sm leading-7 text-slate-700'>{course.description}</p>
-                            <div className='mt-5'>
-                                <PriceTable course={course} />
-                            </div>
-                            <div className='mt-auto flex flex-col gap-3 pt-5 sm:flex-row sm:items-center sm:justify-between'>
-                                <div className='grid grid-cols-2 gap-2'>
-                                    <button
-                                        type='button'
-                                        onClick={() => move(-1)}
-                                        className='rounded-full border border-[#d8c3a3] bg-white px-4 py-2.5 text-sm font-medium text-[#14382a] hover:bg-[#f6efe2]'>
-                                        Previous
-                                    </button>
-                                    <button
-                                        type='button'
-                                        onClick={() => move(1)}
-                                        className='rounded-full border border-[#d8c3a3] bg-white px-4 py-2.5 text-sm font-medium text-[#14382a] hover:bg-[#f6efe2]'>
-                                        Next
-                                    </button>
-                                </div>
+                            return (
                                 <Link
-                                    href={getCourseEnquiryLink(course)}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='inline-flex items-center justify-center gap-2 rounded-full bg-[#2f7a4b] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#276640]'>
-                                    Check tee times
-                                    <ArrowRight className='size-4' />
+                                    key={tier.id}
+                                    href='/golf-holidays#packages'
+                                    data-reveal='card'
+                                    style={{ transitionDelay: `${index * 90}ms` }}
+                                    className='group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-md p-7 text-white'>
+                                    <CourseImage
+                                        src={cover}
+                                        alt={tier.name}
+                                        className='absolute inset-0 -z-10'
+                                        imgClassName='transition duration-700 group-hover:scale-105'
+                                    />
+                                    <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.05)_25%,rgba(10,28,20,0.9)_100%)]' />
+                                    <h3 className='travel-display text-4xl'>{tier.name}</h3>
+                                    <p className='mt-2 text-sm text-white/75'>{pkg.courses.map((c) => c.shortName).join(' · ')}</p>
+                                    <div className='mt-5 flex items-end justify-between border-t border-white/25 pt-4'>
+                                        <p className='text-sm text-white/80'>
+                                            3 rounds from
+                                            <span className='travel-display block text-3xl text-white'>
+                                                {formatThb(pkg.golfFromPerGolfer4)}
+                                            </span>
+                                        </p>
+                                        <span className='flex size-10 items-center justify-center rounded-full border border-white/40 transition group-hover:bg-white group-hover:text-[#14382a]'>
+                                            <ArrowUpRight className='size-4' />
+                                        </span>
+                                    </div>
                                 </Link>
-                            </div>
-                        </div>
-                    </article>
+                            );
+                        })}
+                    </div>
+                    <div className='mt-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left'>
+                        <p className='text-xs text-slate-500'>Golf price per golfer, group of 4. Also 2× or 4× golf per week.</p>
+                        <Link
+                            href='/golf-holidays#plan-your-week'
+                            className='inline-flex items-center gap-2 border-b border-[#c9a85a]/70 pb-1 text-[0.7rem] font-semibold tracking-[0.2em] text-[#14382a] uppercase'>
+                            Or plan your own week
+                            <ArrowRight className='size-3.5' />
+                        </Link>
+                    </div>
                 </div>
             </section>
 
-            {/* 5. Golf holidays preview */}
-            <section aria-label='Northern Thailand sightseeing' className='overflow-hidden bg-[#14382a]'>
+            {/* 6. Course photo strip */}
+            <section aria-label='Golf course photos' className='overflow-hidden bg-[#0f2a1f]'>
                 <div className='chiang-mai-marquee flex w-max'>
-                    {[...holidayMarquee, ...holidayMarquee].map((image, index) => (
+                    {[...courseMarquee, ...courseMarquee].map((image, index) => (
                         <img
                             key={`${image}-${index}`}
                             alt=''
@@ -305,94 +170,131 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <section className='relative py-14 sm:py-16' style={patternedLight}>
-                <div className='mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8'>
-                    <div data-reveal='text-left'>
-                        <p className='text-sm font-semibold tracking-[0.24em] text-[#8a6a2a] uppercase'>Golf holidays</p>
-                        <h2 className='travel-display mt-3 text-4xl text-[#14382a] sm:text-5xl'>
-                            One- and two-week golf holidays in Northern Thailand
-                        </h2>
-                        <p className='mt-4 text-base leading-8 text-slate-700'>
-                            Play your choice of courses around Chiang Mai and Chiang Rai, with time between rounds to explore
-                            Northern Thailand. Spend a day at Doi Inthanon, visit Sticky Waterfall, or see the White Temple in
-                            Chiang Rai. We can arrange overnight stays, private transport, tee times, and sightseeing around your
-                            group’s travel dates.
-                        </p>
-                        <div className='mt-6 flex flex-wrap gap-3'>
-                            <Button asChild size='lg' className='rounded-full bg-[#2f7a4b] px-6 text-white hover:bg-[#276640]'>
-                                <Link href={holidayLink} target='_blank' rel='noopener noreferrer'>
-                                    Plan My Golf Holiday
-                                    <ArrowRight className='size-4' />
-                                </Link>
-                            </Button>
-                            <Button
-                                asChild
-                                size='lg'
-                                variant='outline'
-                                className='rounded-full border-[#d8c3a3] bg-white/70 px-6 text-[#14382a]'>
-                                <Link href='/golf-holidays'>Learn more</Link>
-                            </Button>
-                        </div>
-                    </div>
-                    <div className='grid grid-cols-3 gap-3'>
-                        {sightseeing.map((item, index) => (
-                            <figure
-                                key={item.title}
+            {/* 3. How it works */}
+            <section className='relative border-t border-[#14382a]/8 py-14 sm:py-16' style={patternedLight}>
+                <div className='mx-auto grid max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center lg:px-8'>
+                    <h2 className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
+                        Three steps <span className='italic'>to the first tee</span>
+                    </h2>
+                    <ol className='grid gap-8 sm:grid-cols-3 sm:gap-6'>
+                        {shortSteps.map(({ title, text, icon: Icon }, index) => (
+                            <li
+                                key={title}
                                 data-reveal='card'
-                                style={{ transitionDelay: `${index * 90}ms` }}
-                                className={index === 1 ? 'mt-8' : ''}>
-                                <img alt={item.title} src={item.image} className='h-48 w-full rounded-lg object-cover shadow-md sm:h-64' />
-                                <figcaption className='mt-2 text-xs font-semibold text-[#14382a] sm:text-sm'>{item.title}</figcaption>
-                            </figure>
+                                style={{ transitionDelay: `${index * 100}ms` }}
+                                className='flex items-start gap-4'>
+                                <span className='lux-icon flex-none'>
+                                    <Icon className='size-[1.1rem]' strokeWidth={1.5} />
+                                </span>
+                                <div>
+                                    <h3 className='travel-display text-xl leading-tight text-[#14382a]'>
+                                        {title}
+                                    </h3>
+                                    <p className='mt-1 text-sm text-slate-600'>{text}</p>
+                                </div>
+                            </li>
                         ))}
+                    </ol>
+                </div>
+            </section>
+
+            {/* 4. Why choose us: photo split */}
+            <section className='relative grid bg-[#10291f] text-white lg:grid-cols-2'>
+                <div className='relative min-h-[360px] sm:min-h-[460px] lg:min-h-[640px]'>
+                    <img
+                        src='/images/golf/alpine/lakeside-green.webp'
+                        alt='Alpine Golf Resort, Chiang Mai'
+                        className='absolute inset-0 h-full w-full object-cover'
+                    />
+                    <div className='absolute inset-0 bg-[linear-gradient(90deg,rgba(16,41,31,0)_60%,rgba(16,41,31,0.35)_100%)]' />
+                </div>
+                <div className='flex items-center px-5 py-16 sm:px-10 lg:px-16 lg:py-20'>
+                    <div data-reveal='text-right' className='max-w-lg'>
+                        <h2 className='travel-display text-[2.6rem] leading-[1.05] sm:text-[3.4rem]'>
+                            We handle the booking. <span className='text-[#e2c886] italic'>You play the round.</span>
+                        </h2>
+                        <p className='mt-5 text-base text-white/70'>
+                            Five years of private tours in Northern Thailand — now for golfers.
+                        </p>
+                        <ul className='mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2'>
+                            {services.map(({ title, icon: Icon }) => (
+                                <li key={title} className='flex items-center gap-4'>
+                                    <span className='flex size-11 flex-none items-center justify-center rounded-full border border-[#c9a85a]/60 text-[#e2c886]'>
+                                        <Icon className='size-[1.1rem]' strokeWidth={1.5} />
+                                    </span>
+                                    <span className='travel-display text-xl leading-snug'>{title}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <Link
+                            href='/why-choose-us'
+                            className='mt-10 inline-flex items-center gap-2 border-b border-[#e2c886]/60 pb-1 text-[0.7rem] font-semibold tracking-[0.2em] text-white/85 uppercase transition hover:border-white hover:text-white'>
+                            About us
+                            <ArrowRight className='size-3.5' />
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* 6. FAQ preview */}
-            <section className='relative border-t border-[#e5d6c0] py-14 sm:py-16' style={beigeSection}>
-                <div className='mx-auto max-w-4xl px-4 sm:px-6 lg:px-8'>
-                    <p className='text-sm font-semibold tracking-[0.24em] text-[#8a6a2a] uppercase'>FAQ</p>
-                    <h2 className='travel-display mt-3 text-4xl text-[#14382a] sm:text-5xl'>Frequently asked questions</h2>
-                    <div className='mt-7 grid gap-3'>
-                        {faqs.map((faq) => (
-                            <details
-                                key={faq.question}
-                                className='group rounded-lg border border-[#dfcfb4] bg-white/82 px-5 py-4 shadow-sm open:bg-white'>
-                                <summary className='flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-[#14382a]'>
-                                    {faq.question}
-                                    <ChevronDown className='size-4 flex-none transition-transform group-open:rotate-180' />
-                                </summary>
-                                <p className='mt-3 text-sm leading-7 text-slate-700'>{faq.answer}</p>
-                            </details>
+            {/* 5. The courses (secondary) */}
+            <section className='relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
+                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                    <div className='flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between'>
+                        <div>
+                            <h2 className='travel-display text-[2.4rem] leading-tight text-[#14382a] sm:text-5xl'>
+                                The courses <span className='italic'>in your packages</span>
+                            </h2>
+                            <p className='mt-3 text-base text-slate-600'>Only here for one round? Book a single golf day.</p>
+                        </div>
+                        <Link href='/golf-tours' className='btn-lux-ghost inline-flex w-fit items-center gap-2'>
+                            Golf days
+                            <ArrowRight className='size-3.5' />
+                        </Link>
+                    </div>
+                    <div className='-mx-5 mt-10 flex snap-x gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:px-0 lg:grid lg:grid-cols-7 lg:gap-3 lg:overflow-visible'>
+                        {golfCourses.map((course) => (
+                            <Link
+                                key={course.slug}
+                                href={`/golf-tours#${course.slug}`}
+                                className='group relative isolate flex aspect-[3/4] w-40 flex-none snap-start flex-col justify-end overflow-hidden rounded-md p-3 text-white lg:w-auto'>
+                                <CourseImage
+                                    src={course.image}
+                                    alt={course.name}
+                                    className='absolute inset-0 -z-10'
+                                    imgClassName='transition duration-700 group-hover:scale-105'
+                                />
+                                <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0)_40%,rgba(10,28,20,0.85)_100%)]' />
+                                <RatingStars rating={course.rating} className='text-[#e2c886] [&_svg]:size-3' />
+                                <p className='travel-display mt-1 text-lg leading-tight'>{course.shortName}</p>
+                            </Link>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Closing CTA */}
-            <section className='relative py-12 sm:py-14' style={patternedLight}>
-                <div className='mx-auto max-w-4xl px-4 sm:px-6 lg:px-8'>
-                    <div
-                        data-reveal='soft-scale'
-                        className='rounded-lg border border-[#c9a85a]/60 bg-[#14382a] px-6 py-9 text-center text-white shadow-lg sm:px-8'>
-                        <p className='text-sm font-semibold tracking-[0.22em] text-[#e4c98a] uppercase'>Ready to tee off?</p>
-                        <h2 className='travel-display mt-3 text-3xl sm:text-4xl'>
-                            Send us your date, group size and hotel. We’ll take care of the rest.
+            <section
+                className='relative isolate overflow-hidden py-24 sm:py-32'
+                style={{ backgroundImage: "url('/images/golf/alpine/cover.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className='absolute inset-0 -z-10 bg-[#0f2a1f]/78' />
+                <div className='mx-auto max-w-3xl px-5 sm:px-6 lg:px-8'>
+                    <div data-reveal='soft-scale' className='text-center text-white'>
+                        <h2 className='travel-display text-[2.8rem] leading-tight sm:text-7xl'>
+                            Ready to <span className='text-[#e2c886] italic'>tee off?</span>
                         </h2>
-                        <div className='mt-6 flex flex-col justify-center gap-3 sm:flex-row'>
-                            <Button asChild size='lg' className='rounded-full bg-[#2f7a4b] px-6 text-white hover:bg-[#3a8a59]'>
+                        <div className='mt-9 flex flex-col justify-center gap-3 sm:flex-row'>
+                            <Button asChild size='lg' className='btn-lux-gold'>
                                 <Link href={bookingLink} target='_blank' rel='noopener noreferrer'>
                                     Book on WhatsApp
-                                    <ArrowRight className='size-4' />
+                                    <ArrowRight className='size-3.5' />
                                 </Link>
                             </Button>
                             <Button
                                 asChild
                                 size='lg'
                                 variant='outline'
-                                className='rounded-full border-white/30 bg-white/10 px-6 text-white hover:bg-white/18 hover:text-white'>
-                                <Link href='/golf-tours'>Explore Golf Tours</Link>
+                                className='btn-lux-ghost-light'>
+                                <Link href='/golf-holidays'>Explore Golf Holidays</Link>
                             </Button>
                         </div>
                     </div>

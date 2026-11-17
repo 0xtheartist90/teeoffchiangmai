@@ -19,19 +19,18 @@ export const metadata: Metadata = {
 
 const WhyChooseUsPage = () => {
     return (
-        <main className='bg-[#f8f3ea] text-slate-900'>
+        <main className='bg-[#f8f5ee] text-slate-900'>
             <SiteHeader />
-            <PageHero title='Why Tee Off Chiang Mai?' />
+            <PageHero title='Why Tee Off Chiang Mai?' eyebrow='Why choose us' image='/images/golf/lanna/cover.webp' />
 
             <section className='relative py-14 sm:py-16' style={patternedLight}>
                 <div className='mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8'>
                     <div data-reveal='text-left'>
-                        <p className='text-sm font-semibold tracking-[0.22em] text-[#8a6a2a] uppercase'>Golfers looking after golfers</p>
                         <h2 className='travel-display mt-4 max-w-2xl text-4xl leading-tight text-[#14382a] sm:text-5xl'>
                             We handle the booking. You play the round.
                         </h2>
                         <p className='mt-6 text-base leading-8 text-slate-700'>{whyIntro}</p>
-                        <Button asChild className='mt-7 rounded-full bg-[#2f7a4b] px-6 text-white hover:bg-[#276640]'>
+                        <Button asChild className='btn-lux mt-7'>
                             <Link href={bookingLink} target='_blank' rel='noopener noreferrer'>
                                 Book on WhatsApp
                                 <ArrowRight className='size-4' />
@@ -46,15 +45,14 @@ const WhyChooseUsPage = () => {
 
             <section className='relative py-14 sm:py-16' style={beigeSection}>
                 <div className='mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
-                    <p className='text-sm font-semibold tracking-[0.22em] text-[#8a6a2a] uppercase'>What we handle</p>
                     <div className='mt-6 grid gap-4 sm:grid-cols-2'>
                         {services.map(({ title, text, icon: Icon }, index) => (
                             <div
                                 key={title}
                                 data-reveal='card'
                                 style={{ transitionDelay: `${index * 80}ms` }}
-                                className='flex gap-4 rounded-lg border border-[#dfcfb4] bg-[#fffaf2]/86 p-6 shadow-sm'>
-                                <span className='flex size-12 flex-none items-center justify-center rounded-md bg-[#e6efe2] text-[#2f7a4b]'>
+                                className='lux-card flex gap-4 p-6'>
+                                <span className='lux-icon flex-none'>
                                     <Icon className='size-5' />
                                 </span>
                                 <div>

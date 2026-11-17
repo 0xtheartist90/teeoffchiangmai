@@ -19,13 +19,12 @@ export const metadata: Metadata = {
 
 const FaqPage = () => {
     return (
-        <main className='bg-[#f8f3ea] text-slate-900'>
+        <main className='bg-[#f8f5ee] text-slate-900'>
             <SiteHeader />
-            <PageHero title='Frequently Asked Questions' />
+            <PageHero title='Frequently Asked Questions' eyebrow='FAQ' image='/images/golf/summit-green-valley/aerial-wide.webp' />
 
             <section className='relative py-12 sm:py-14' style={patternedLight}>
                 <div className='mx-auto max-w-5xl px-4 sm:px-6 lg:px-8'>
-                    <p className='text-sm font-semibold tracking-[0.22em] text-[#8a6a2a] uppercase'>Booking your golf day</p>
                     <h2 className='travel-display mt-2 text-3xl text-[#14382a]'>Good to know before you tee off</h2>
                     <div className='mt-7 grid gap-4'>
                         {faqs.map((faq, index) => (
@@ -49,7 +48,7 @@ const FaqPage = () => {
 
                     <div className='mt-10 flex flex-col items-start gap-3 rounded-lg border border-[#dcc6a5] bg-[#f6efe2] p-6 sm:flex-row sm:items-center sm:justify-between'>
                         <p className='text-base font-semibold text-[#14382a]'>Still have a question? Ask us on WhatsApp.</p>
-                        <Button asChild className='rounded-full bg-[#2f7a4b] px-6 text-white hover:bg-[#276640]'>
+                        <Button asChild className='btn-lux'>
                             <Link href={bookingLink} target='_blank' rel='noopener noreferrer'>
                                 Book on WhatsApp
                                 <ArrowRight className='size-4' />
