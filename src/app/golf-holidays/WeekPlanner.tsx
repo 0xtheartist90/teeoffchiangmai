@@ -233,6 +233,14 @@ const WeekPlanner = () => {
                                 ) : null}
 
                                 {day.kind === 'sightseeing' ? (
+                                    <img
+                                        src={getTrip(day.trip).image}
+                                        alt={getTrip(day.trip).name}
+                                        className='aspect-[16/10] w-full rounded object-cover'
+                                    />
+                                ) : null}
+
+                                {day.kind === 'sightseeing' ? (
                                     <select
                                         aria-label='Sightseeing idea'
                                         value={day.trip}

@@ -68,27 +68,6 @@ export const faqs = [
     }
 ];
 
-export const sightseeing = [
-    {
-        title: 'Doi Inthanon',
-        text: 'Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.',
-        price: 3200,
-        image: '/images/holidays/doi-inthanon.webp'
-    },
-    {
-        title: 'Sticky Waterfall',
-        text: 'Climb the limestone cascades of Bua Tong, combined with Doi Suthep temple.',
-        price: 2400,
-        image: '/images/holidays/sticky-waterfall.webp'
-    },
-    {
-        title: 'White Temple, Chiang Rai',
-        text: 'Wat Rong Khun and the Big Buddha on a full day trip to Chiang Rai.',
-        price: 3400,
-        image: '/images/holidays/white-temple.webp'
-    }
-];
-
 const faqByQuestion = (q: string) => faqs.find((f) => f.question === q)!;
 
 /** FAQ page, grouped. New answers are based on the price sheet and the site's own packages. */

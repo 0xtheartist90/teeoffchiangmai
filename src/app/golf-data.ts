@@ -334,13 +334,13 @@ export const getHolidayPackage = (tierId: HolidayTier, rounds: RoundsPerWeek) =>
 // ---- Sightseeing day trips (prices from Chiang Mai Driver tours: private car + driver for the group) ----
 
 export const sightseeingTrips = [
-    { id: 'doi-inthanon', name: 'Doi Inthanon', price: 3200 },
-    { id: 'sticky-waterfall', name: 'Doi Suthep & Sticky Waterfall', price: 2400 },
-    { id: 'chiang-rai', name: 'Chiang Rai & White Temple', price: 3400 },
-    { id: 'temples', name: 'Temple & Culture Tour', price: 1900 },
-    { id: 'half-day', name: 'Half-day mountain temples', price: 1200 },
-    { id: 'grand-canyon', name: 'Chiang Mai Grand Canyon', price: 1500 },
-    { id: 'own-route', name: 'Your own route (8 hours)', price: 2700 }
+    { id: 'doi-inthanon', name: 'Doi Inthanon', price: 3200, image: '/images/holidays/doi-inthanon.webp', text: 'Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.' },
+    { id: 'sticky-waterfall', name: 'Doi Suthep & Sticky Waterfall', price: 2400, image: '/images/holidays/sticky-waterfall.webp', text: 'Climb the limestone cascades of Bua Tong, combined with Doi Suthep temple.' },
+    { id: 'chiang-rai', name: 'Chiang Rai & White Temple', price: 3400, image: '/images/holidays/white-temple.webp', text: 'Wat Rong Khun and the Big Buddha on a full day trip to Chiang Rai.' },
+    { id: 'temples', name: 'Temple & Culture Tour', price: 1900, image: '/images/holidays/temples.webp', text: 'The old city’s best-known temples and local culture.' },
+    { id: 'half-day', name: 'Half-day mountain temples', price: 1200, image: '/images/holidays/half-day.webp', text: 'Doi Suthep and a hidden temple by a waterfall.' },
+    { id: 'grand-canyon', name: 'Chiang Mai Grand Canyon', price: 1500, image: '/images/holidays/grand-canyon.webp', text: 'Swim and relax at the old quarry lake.' },
+    { id: 'own-route', name: 'Your own route (8 hours)', price: 2700, image: '/images/holidays/own-route.webp', text: 'A private driver for the day — you choose the stops.' }
 ] as const;
 
 export type SightseeingTripId = (typeof sightseeingTrips)[number]['id'];
