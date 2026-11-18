@@ -282,6 +282,8 @@ export const holidayTiers: {
     id: HolidayTier;
     name: string;
     tagline: string;
+    /** Cover photo for the package card. */
+    image: string;
     /** Course slugs in order of preference; the first N are used for N rounds. */
     courses: string[];
 }[] = [
@@ -289,18 +291,21 @@ export const holidayTiers: {
         id: 'essential',
         name: 'Essential',
         tagline: 'Relaxed, great-value rounds close to town.',
+        image: '/images/golf/sand-creek/lake-bunkers.webp',
         courses: ['sand-creek', 'hang-dong', 'pimantip', 'lanna']
     },
     {
         id: 'classic',
         name: 'Classic',
         tagline: 'Classic Chiang Mai clubs plus a mountain resort course.',
+        image: '/images/golf/lanna/green-bunkers.webp',
         courses: ['lanna', 'highlands', 'pimantip', 'summit-green-valley']
     },
     {
         id: 'premium',
         name: 'Premium',
         tagline: 'The region’s championship and resort courses.',
+        image: '/images/golf/alpine/cover.webp',
         courses: ['alpine', 'summit-green-valley', 'highlands', 'lanna']
     }
 ];

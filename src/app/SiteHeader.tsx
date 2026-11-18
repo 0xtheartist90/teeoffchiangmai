@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 
 import BrandLogo from '@/app/BrandLogo';
 import MobileNavMenu from '@/app/MobileNavMenu';
+import { CurrencySelector } from '@/app/currency';
 import { holidayLink } from '@/app/golf-data';
 import { navLinks } from '@/app/site-nav';
 
@@ -47,7 +48,7 @@ const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => {
                         <BrandLogo size='md' variant={transparent ? 'light' : 'dark'} />
                     </Link>
 
-                    <nav className='flex items-center justify-center gap-5 lg:gap-8'>
+                    <nav className='flex items-center justify-center gap-4 xl:gap-7'>
                         {navLinks.map((link) => {
                             const active = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
 
@@ -55,7 +56,7 @@ const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`border-b pb-0.5 text-[0.68rem] font-semibold tracking-[0.2em] uppercase transition ${
+                                    className={`border-b pb-0.5 text-[0.66rem] font-semibold tracking-[0.14em] whitespace-nowrap uppercase transition xl:tracking-[0.2em] ${
                                         transparent
                                             ? `text-white/85 hover:text-white ${active ? 'border-[#e2c886]' : 'border-transparent'}`
                                             : `text-[#14382a]/70 hover:text-[#14382a] ${active ? 'border-[#c9a85a] text-[#14382a]' : 'border-transparent'}`
@@ -66,13 +67,16 @@ const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => {
                         })}
                     </nav>
 
-                    <Link
-                        href={holidayLink}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className={`${transparent ? 'btn-lux-ghost-light' : 'btn-lux'} inline-flex items-center justify-self-end`}>
-                        Plan my trip
-                    </Link>
+                    <div className='flex items-center gap-3 justify-self-end'>
+                        <CurrencySelector light={transparent} className='hidden lg:inline-flex' />
+                        <Link
+                            href={holidayLink}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className={`${transparent ? 'btn-lux-ghost-light' : 'btn-lux'} inline-flex items-center`}>
+                            Plan my trip
+                        </Link>
+                    </div>
                 </div>
             </div>
         </header>

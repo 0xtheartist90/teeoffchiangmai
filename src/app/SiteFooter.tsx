@@ -1,69 +1,131 @@
 import Link from 'next/link';
 
-import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 
-import BrandLogo from '@/app/BrandLogo';
-import { bookingLink } from '@/app/golf-data';
+import { bookingLink, golfCourses, holidayLink, holidayTiers } from '@/app/golf-data';
 import { navLinks } from '@/app/site-nav';
+
+const columnTitle = 'text-[0.62rem] font-semibold tracking-[0.28em] text-[#e2c886] uppercase';
+const linkClass = 'text-sm text-white/70 transition hover:text-white';
 
 const SiteFooter = () => {
     return (
-        <footer className='relative bg-[#0f2e22] py-10 text-white sm:py-12'>
-            <div className='mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
-                <div className='grid gap-8 lg:grid-cols-[1.1fr_0.6fr_0.9fr] lg:items-start'>
-                    <div>
-                        <BrandLogo variant='light' size='md' />
-                        <h2 className='travel-display mt-4 max-w-sm text-lg leading-snug text-white sm:text-xl'>
-                            Tee times, green fees and private hotel transfers. All you need to focus on is your 18 holes.
-                        </h2>
-                        <p className='mt-3 text-sm text-white/60'>From the team behind Chiang Mai Driver.</p>
-                    </div>
+        <footer className='relative overflow-hidden bg-[#0c241a] text-white'>
+            <div className='h-px bg-[linear-gradient(90deg,transparent,rgba(201,168,90,0.7),transparent)]' />
 
-                    <div>
-                        <p className='text-sm font-semibold tracking-[0.18em] text-[#e4c98a] uppercase'>Explore</p>
-                        <nav className='mt-3 grid gap-2 text-sm text-white/78'>
-                            {navLinks.map((link) => (
-                                <Link key={link.href} href={link.href} className='transition hover:text-white'>
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </nav>
-                    </div>
+            {/* CTA strip */}
+            <div className='mx-auto flex max-w-6xl flex-col gap-6 px-5 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8'>
+                <div className='flex items-center gap-6'>
+                    <img
+                        src='/images/brand/logo-stacked-light.webp'
+                        alt='Tee Off Chiang Mai'
+                        width={494}
+                        height={400}
+                        className='h-24 w-auto sm:h-28'
+                    />
+                    <p className='travel-display max-w-md text-3xl leading-tight sm:text-4xl'>
+                        Your round, <span className='text-[#e2c886] italic'>arranged.</span>
+                    </p>
+                </div>
+                <div className='flex flex-col gap-3 sm:flex-row'>
+                    <Link
+                        href={holidayLink}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='btn-lux-gold inline-flex items-center justify-center gap-2'>
+                        Plan my golf holiday
+                        <ArrowUpRight className='size-3.5' />
+                    </Link>
+                    <Link
+                        href={bookingLink}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
+                        Book a round
+                    </Link>
+                </div>
+            </div>
 
-                    <div>
-                        <p className='text-sm font-semibold tracking-[0.18em] text-[#e4c98a] uppercase'>Contact</p>
-                        <div className='mt-3 grid gap-3 text-sm text-white/78'>
-                            <a
-                                className='flex items-center gap-3 transition hover:text-white'
-                                href={bookingLink}
-                                target='_blank'
-                                rel='noopener noreferrer'>
-                                <span className='flex size-8 items-center justify-center rounded-md bg-white/10 text-[#e4c98a]'>
-                                    <MessageCircle className='size-4' />
-                                </span>
-                                <span>WhatsApp +66 93 124 6329</span>
-                            </a>
-                            <a className='flex items-center gap-3 transition hover:text-white' href='tel:+66931246329'>
-                                <span className='flex size-8 items-center justify-center rounded-md bg-white/10 text-[#e4c98a]'>
-                                    <Phone className='size-4' />
-                                </span>
-                                <span>+66 93 124 6329</span>
-                            </a>
-                            <a
-                                className='flex items-center gap-3 transition hover:text-white'
-                                href='mailto:travel@chiang-mai-driver.com'>
-                                <span className='flex size-8 items-center justify-center rounded-md bg-white/10 text-[#e4c98a]'>
-                                    <Mail className='size-4' />
-                                </span>
-                                <span>travel@chiang-mai-driver.com</span>
-                            </a>
-                        </div>
-                    </div>
+            {/* Link columns */}
+            <div className='mx-auto grid max-w-6xl gap-10 border-t border-white/10 px-5 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
+                <div>
+                    <p className={columnTitle}>Explore</p>
+                    <nav className='mt-5 grid gap-3'>
+                        {navLinks.map((link) => (
+                            <Link key={link.href} href={link.href} className={linkClass}>
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
                 </div>
 
-                <p className='mt-10 border-t border-white/10 pt-6 text-xs text-white/50'>
-                    © {new Date().getFullYear()} Tee Off Chiang Mai. Golf tours in Chiang Mai and Northern Thailand.
+                <div>
+                    <p className={columnTitle}>Golf holidays</p>
+                    <nav className='mt-5 grid gap-3'>
+                        {holidayTiers.map((tier) => (
+                            <Link key={tier.id} href='/golf-holidays#packages' className={linkClass}>
+                                {tier.name} package
+                            </Link>
+                        ))}
+                        <Link href='/golf-holidays#plan-your-week' className={linkClass}>
+                            Plan your own week
+                        </Link>
+                    </nav>
+                </div>
+
+                <div>
+                    <p className={columnTitle}>Courses</p>
+                    <nav className='mt-5 grid gap-3'>
+                        {golfCourses.map((course) => (
+                            <Link key={course.slug} href={`/golf-tours#${course.slug}`} className={linkClass}>
+                                {course.shortName}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
+
+                <div>
+                    <p className={columnTitle}>Contact</p>
+                    <div className='mt-5 grid gap-4 text-sm text-white/70'>
+                        <a
+                            className='flex items-center gap-3 transition hover:text-white'
+                            href={bookingLink}
+                            target='_blank'
+                            rel='noopener noreferrer'>
+                            <MessageCircle className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
+                            WhatsApp
+                        </a>
+                        <a className='flex items-center gap-3 transition hover:text-white' href='tel:+66931246329'>
+                            <Phone className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
+                            +66 93 124 6329
+                        </a>
+                        <a
+                            className='flex items-center gap-3 break-all transition hover:text-white'
+                            href='mailto:travel@chiang-mai-driver.com'>
+                            <Mail className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
+                            travel@chiang-mai-driver.com
+                        </a>
+                        <p className='flex items-center gap-3'>
+                            <MapPin className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
+                            Chiang Mai, Thailand
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Big wordmark */}
+            <div aria-hidden='true' className='pointer-events-none select-none overflow-hidden px-5 sm:px-6 lg:px-8'>
+                <p className='travel-display mx-auto max-w-6xl translate-y-[18%] text-center text-[min(12.5vw,9.4rem)] leading-[0.8] whitespace-nowrap text-white/[0.06]'>
+                    Tee Off <span className='italic'>Chiang Mai</span>
                 </p>
+            </div>
+
+            {/* Bottom bar */}
+            <div className='relative border-t border-white/10'>
+                <div className='mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-white/45 sm:flex-row sm:justify-between sm:px-6 lg:px-8'>
+                    <p>© {new Date().getFullYear()} Tee Off Chiang Mai. Golf holidays and golf days in Northern Thailand.</p>
+                    <p>From the team behind Chiang Mai Driver.</p>
+                </div>
             </div>
         </footer>
     );

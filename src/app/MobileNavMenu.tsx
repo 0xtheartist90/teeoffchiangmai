@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { Menu, X } from 'lucide-react';
 
+import { CurrencySelector } from '@/app/currency';
 import { bookingLink } from '@/app/golf-data';
 import { navLinks } from '@/app/site-nav';
 
@@ -40,7 +41,11 @@ const MobileNavMenu = ({ menuAlign = 'right', light = false }: MobileNavMenuProp
                     className={`absolute top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-md border border-[#14382a]/10 bg-[#f8f5ee]/97 p-2 shadow-2xl backdrop-blur-xl ${
                         menuAlign === 'left' ? 'left-0' : 'right-0'
                     }`}>
-                    <div className='grid gap-1'>
+                    <div className='flex items-center justify-between border-b border-[#14382a]/10 px-4 pt-2 pb-3'>
+                        <span className='text-[0.62rem] font-semibold tracking-[0.2em] text-slate-500 uppercase'>Currency</span>
+                        <CurrencySelector />
+                    </div>
+                    <div className='mt-1 grid gap-1'>
                         {mobileLinks.map((item) => (
                             <Link
                                 key={item.href}

@@ -9,6 +9,7 @@ import CourseImage from '@/app/CourseImage';
 import RatingStars from '@/app/RatingStars';
 import type { GolfCourse } from '@/app/golf-data';
 import { formatThb, golfCourses, whatsappWithText } from '@/app/golf-data';
+import { Price } from '@/app/currency';
 
 type Sort = 'price' | 'rating';
 
@@ -79,13 +80,13 @@ const CourseRow = ({ course, golfers, flip }: { course: GolfCourse; golfers: num
                             <div>
                                 <p className='text-[0.62rem] font-semibold tracking-[0.24em] text-[#9a7b3c] uppercase'>{pkg.label}</p>
                                 <p className='travel-display mt-1 text-4xl leading-none text-[#14382a] tabular-nums'>
-                                    {formatThb(pkg.perGolfer[golfers - 1])}
+                                    <Price thb={pkg.perGolfer[golfers - 1]} />
                                 </p>
                             </div>
                             <p className='pb-1 text-right text-sm text-slate-500'>
                                 per golfer
                                 <br />
-                                <span className='text-[#14382a] tabular-nums'>{formatThb(pkg.total[golfers - 1])}</span> total
+                                <span className='text-[#14382a] tabular-nums'><Price thb={pkg.total[golfers - 1]} /></span> total
                             </p>
                         </div>
                     ))}
@@ -116,11 +117,10 @@ const GolfDaysListing = () => {
     const [golfers, setGolfers] = useState(2);
     const [sort, setSort] = useState<Sort>('price');
 
+    const lowest = (c: GolfCourse) => Math.min(...c.packages.map((p) => p.perGolfer[golfers - 1]));
+    // Top rated: highest rating first; on a tie the premium (pricier) course wins, so Alpine leads.
     const courses = [...golfCourses].sort((a, b) =>
-        sort === 'rating'
-            ? b.rating - a.rating
-            : Math.min(...a.packages.map((p) => p.perGolfer[golfers - 1])) -
-              Math.min(...b.packages.map((p) => p.perGolfer[golfers - 1]))
+        sort === 'rating' ? b.rating - a.rating || lowest(b) - lowest(a) : lowest(a) - lowest(b)
     );
 
     return (

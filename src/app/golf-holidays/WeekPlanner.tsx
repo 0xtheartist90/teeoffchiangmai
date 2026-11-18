@@ -9,6 +9,7 @@ import CourseImage from '@/app/CourseImage';
 import type { GolfCourse } from '@/app/golf-data';
 import type { SightseeingTripId } from '@/app/golf-data';
 import { formatThb, getTrip, golfCourses, sightseeingTrips, whatsappWithText } from '@/app/golf-data';
+import { Price } from '@/app/currency';
 
 type DayPlan =
     | { kind: 'free' }
@@ -177,7 +178,7 @@ const WeekPlanner = () => {
                         <div
                             key={index}
                             className={`flex flex-col overflow-hidden rounded-md border transition ${
-                                course ? 'border-[#c9a85a]/60 bg-white' : 'border-[#14382a]/10 bg-white/60'
+                                course ? 'border-[#c9a85a]/70 bg-white' : 'border-white/20 bg-[#f8f5ee]'
                             }`}>
                             <div className='relative h-16 sm:h-24 lg:h-20'>
                                 {course ? (
@@ -251,14 +252,14 @@ const WeekPlanner = () => {
                                     {pkg ? (
                                         <>
                                             <span className='font-semibold text-[#14382a] tabular-nums'>
-                                                {formatThb(pkg.perGolfer[groupSize - 1])}
+                                                <Price thb={pkg.perGolfer[groupSize - 1]} />
                                             </span>{' '}
                                             p.p.
                                         </>
                                     ) : day.kind === 'sightseeing' ? (
                                         <>
                                             <span className='font-semibold text-[#14382a] tabular-nums'>
-                                                {formatThb(getTrip(day.trip).price)}
+                                                <Price thb={getTrip(day.trip).price} />
                                             </span>{' '}
                                             per car
                                         </>
@@ -273,7 +274,7 @@ const WeekPlanner = () => {
             </div>
 
             {/* Summary */}
-            <div className='mt-6 grid overflow-hidden rounded-md bg-[#10291f] text-white lg:grid-cols-[1.3fr_0.7fr]'>
+            <div className='mt-6 grid overflow-hidden rounded-md border border-white/15 bg-[#10291f]/90 text-white backdrop-blur-md lg:grid-cols-[1.3fr_0.7fr]'>
                 <div className='p-6 sm:p-8'>
                     <h3 className='travel-display text-3xl'>Your week</h3>
                     <ul className='mt-4 divide-y divide-white/10 text-sm'>
@@ -293,7 +294,7 @@ const WeekPlanner = () => {
                                               : 'Free day'}
                                     </span>
                                     <span className='text-right text-white/70 tabular-nums'>
-                                        {r.total ? formatThb(r.total) : '—'}
+                                        {r.total ? <Price thb={r.total} /> : '—'}
                                     </span>
                                 </li>
                             );
@@ -307,16 +308,16 @@ const WeekPlanner = () => {
                             {summary.rounds} {summary.rounds === 1 ? 'round' : 'rounds'} · {summary.trips}{' '}
                             {summary.trips === 1 ? 'day trip' : 'day trips'} · {groupSize} {groupSize === 1 ? 'golfer' : 'golfers'}
                         </p>
-                        <p className='travel-display mt-3 text-5xl leading-none text-[#e2c886]'>{formatThb(summary.total)}</p>
+                        <p className='travel-display mt-3 text-5xl leading-none text-[#e2c886]'><Price thb={summary.total} /></p>
                         <p className='mt-2 text-sm text-white/70'>group total</p>
                         <p className='mt-4 text-lg text-white tabular-nums'>
-                            {formatThb(summary.perGolfer)} <span className='text-sm text-white/60'>per person</span>
+                            <Price thb={summary.perGolfer} /> <span className='text-sm text-white/60'>per person</span>
                         </p>
                         <dl className='mt-4 grid grid-cols-2 gap-2 border-t border-white/10 pt-4 text-sm'>
                             <dt className='text-white/60'>Golf</dt>
-                            <dd className='text-right tabular-nums'>{formatThb(summary.golfTotal)}</dd>
+                            <dd className='text-right tabular-nums'><Price thb={summary.golfTotal} /></dd>
                             <dt className='text-white/60'>Day trips</dt>
-                            <dd className='text-right tabular-nums'>{formatThb(summary.tripsTotal)}</dd>
+                            <dd className='text-right tabular-nums'><Price thb={summary.tripsTotal} /></dd>
                         </dl>
                         <p className='mt-4 text-xs leading-5 text-white/50'>
                             Golf includes green fees and hotel transfers (carts where included). Day trips are a private car and

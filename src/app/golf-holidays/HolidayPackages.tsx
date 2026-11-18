@@ -8,6 +8,7 @@ import { ArrowUpRight } from 'lucide-react';
 import CourseImage from '@/app/CourseImage';
 import type { RoundsPerWeek } from '@/app/golf-data';
 import { formatThb, getHolidayPackage, holidayTiers, roundsPerWeekOptions, whatsappWithText } from '@/app/golf-data';
+import { Price } from '@/app/currency';
 
 
 const HolidayPackages = () => {
@@ -52,7 +53,7 @@ const HolidayPackages = () => {
                             key={tier.id}
                             className={`lux-card relative flex flex-col overflow-hidden ${featured ? 'lg:-mt-4 lg:mb-4 ring-1 ring-[#c9a85a]/70' : ''}`}>
                             <div className='relative h-44'>
-                                <CourseImage src={pkg.courses[0]?.image} alt={pkg.courses[0]?.name ?? tier.name} className='absolute inset-0' />
+                                <CourseImage src={tier.image} alt={tier.name} className='absolute inset-0' />
                                 <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,20,0.1)_0%,rgba(10,28,20,0.75)_100%)]' />
                                 {featured ? (
                                     <span className='absolute top-4 right-4 rounded-full bg-[#c9a85a] px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] text-[#10291f] uppercase'>
@@ -75,10 +76,10 @@ const HolidayPackages = () => {
                                         Golf from
                                     </p>
                                     <p className='travel-display mt-1 text-[2.4rem] leading-none text-[#14382a]'>
-                                        {formatThb(pkg.golfFromPerGolfer4)}
+                                        <Price thb={pkg.golfFromPerGolfer4} />
                                     </p>
                                     <p className='mt-1.5 text-xs leading-5 text-slate-500'>
-                                        per golfer, group of 4 · {formatThb(pkg.golfFromPerGolfer2)} per golfer for 2
+                                        per golfer, group of 4 · <Price thb={pkg.golfFromPerGolfer2} /> per golfer for 2
                                     </p>
                                 </div>
 

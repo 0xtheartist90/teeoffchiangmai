@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, BedDouble, CarFront, Flag, MapPinned } from 'lucide-react';
 
 import PageHero from '@/app/PageHero';
+import ParallaxBackground from '@/app/ParallaxBackground';
 import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
 import { sightseeing } from '@/app/content';
@@ -11,6 +12,7 @@ import HolidayPackages from '@/app/golf-holidays/HolidayPackages';
 import WeekPlanner from '@/app/golf-holidays/WeekPlanner';
 import { formatThb, holidayLink } from '@/app/golf-data';
 import { beigeSection, patternedLight } from '@/app/section-backgrounds';
+import { Price } from '@/app/currency';
 
 export const metadata: Metadata = {
     title: 'Golf Holidays | Tee Off Chiang Mai',
@@ -78,13 +80,15 @@ const GolfHolidaysPage = () => {
             </section>
 
             {/* Custom week */}
-            <section id='plan-your-week' className='relative scroll-mt-20 py-20 sm:py-24' style={patternedLight}>
+            <section id='plan-your-week' className='relative isolate scroll-mt-20 overflow-hidden py-20 sm:py-28'>
+                <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
+                <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
                 <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
-                    <div className='mx-auto mb-10 max-w-2xl text-center'>
-                        <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
-                            Or plan <span className='italic'>your own week</span>
+                    <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
+                        <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
+                            Or plan <span className='text-[#e2c886] italic'>your own week</span>
                         </h2>
-                        <p className='mt-3 text-base text-slate-600'>Choose a course or a day off for each day.</p>
+                        <p className='mt-3 text-base text-white/75'>Choose a course or a day off for each day.</p>
                     </div>
                     <WeekPlanner />
                 </div>
@@ -113,7 +117,7 @@ const GolfHolidaysPage = () => {
                                 <h3 className='travel-display text-3xl'>{item.title}</h3>
                                 <p className='mt-2 text-sm text-white/75'>{item.text}</p>
                                 <p className='mt-4 border-t border-white/25 pt-3 text-sm text-white/80'>
-                                    From <span className='travel-display text-2xl text-[#e2c886]'>{formatThb(item.price)}</span> per car
+                                    From <span className='travel-display text-2xl text-[#e2c886]'><Price thb={item.price} /></span> per car
                                 </p>
                             </article>
                         ))}

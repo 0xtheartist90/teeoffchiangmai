@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 
-import { ArrowRight, ArrowUpRight, CalendarCheck, CarFront, MessageCircle } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CalendarCheck, CarFront, Flag, MapPinned, MessageCircle, Users } from 'lucide-react';
 
 import CourseImage from '@/app/CourseImage';
+import PackageCards from '@/app/PackageCards';
+import ParallaxBackground from '@/app/ParallaxBackground';
+import WeekPlanner from '@/app/golf-holidays/WeekPlanner';
 import RatingStars from '@/app/RatingStars';
 import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
@@ -17,6 +20,7 @@ import {
     holidayTiers
 } from '@/app/golf-data';
 import { beigeSection, patternedLight } from '@/app/section-backgrounds';
+import { Price } from '@/app/currency';
 import { Button } from '@/registry/new-york-v4/ui/button';
 
 /** Hero video (from the Birdiez site). MP4 first for Safari/iPhone, WebM as fallback. */
@@ -37,6 +41,13 @@ const courseMarquee = [
     '/images/golf/highlands/bunker-green.webp'
 ]
 
+const heroUsps = [
+    { label: '7 courses around Chiang Mai', icon: Flag },
+    { label: 'Private hotel transfers', icon: CarFront },
+    { label: 'Clubs & caddies on request', icon: Users },
+    { label: '5+ years of local tours', icon: MapPinned }
+];
+
 const shortSteps = [
     { title: 'Tell us your plan', text: 'Dates, golfers, hotel and courses.', icon: MessageCircle },
     { title: 'We arrange it', text: 'Tee times, transfers, carts, caddies or clubs.', icon: CalendarCheck },
@@ -50,9 +61,9 @@ const HomePage = () => {
             <SiteHeader overlay />
 
             {/* 1. Hero */}
-            <section className='relative isolate -mt-[73px] min-h-[100svh] overflow-hidden bg-[#0f2a1f] sm:-mt-[81px]'>
+            <section className='relative isolate -mt-[73px] flex min-h-[100svh] flex-col overflow-hidden bg-[#0f2a1f] sm:-mt-[81px]'>
                 <video
-                    className='absolute inset-0 h-full w-full object-cover'
+                    className='absolute inset-0 -z-10 h-full w-full object-cover'
                     autoPlay
                     muted
                     loop
@@ -62,30 +73,54 @@ const HomePage = () => {
                     <source src={heroVideo.mp4} type='video/mp4' />
                     <source src={heroVideo.webm} type='video/webm' />
                 </video>
-                <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,20,0.45)_0%,rgba(10,28,20,0.1)_40%,rgba(10,28,20,0.7)_100%)]' />
+                <div className='absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,28,20,0.25)_0%,rgba(10,28,20,0.55)_70%),linear-gradient(180deg,rgba(10,28,20,0.55)_0%,rgba(10,28,20,0.1)_35%,rgba(10,28,20,0.35)_70%,rgba(10,28,20,0.85)_100%)]' />
 
-                <div className='relative mx-auto flex min-h-[100svh] max-w-6xl items-end px-5 pt-32 pb-16 sm:px-6 sm:pb-24 lg:px-8'>
-                    <div className='text-white'>
-                        <h1 className='travel-display text-[clamp(2.1rem,9.2vw,5.75rem)] leading-[0.95] whitespace-nowrap'>
-                            Play golf in <span className='text-[#e2c886] italic'>Chiang Mai</span>
-                        </h1>
-                        <p className='mt-5 text-base text-white/80 sm:text-lg'>
-                            Golf holidays with tee times, transfers and sightseeing — arranged for you.
+                <div className='mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-5 pt-28 pb-10 text-center text-white sm:px-6 lg:px-8'>
+                    <img
+                        src='/images/brand/logo-stacked-light.webp'
+                        alt='Tee Off Chiang Mai'
+                        width={494}
+                        height={400}
+                        className='h-32 w-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)] sm:h-44 lg:h-52'
+                    />
+                    <h1 className='travel-display mt-6 text-[clamp(2.1rem,9.2vw,5.75rem)] leading-[0.95] whitespace-nowrap sm:mt-8'>
+                        Play golf in <span className='text-[#e2c886] italic'>Chiang Mai</span>
+                    </h1>
+                    <div className='mt-5 flex items-center gap-4 text-[#e2c886]/80'>
+                        <span className='h-px w-6 bg-current sm:w-10' />
+                        <p className='text-[0.62rem] font-semibold tracking-[0.22em] whitespace-nowrap uppercase sm:text-[0.68rem] sm:tracking-[0.3em]'>
+                            Golf holidays · Golf days
                         </p>
-                        <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-                            <Link href='/golf-holidays' className='btn-lux-gold inline-flex items-center justify-center gap-2'>
-                                Explore Golf Holidays
-                                <ArrowRight className='size-3.5' />
-                            </Link>
-                            <Link
-                                href={bookingLink}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
-                                Book on WhatsApp
-                            </Link>
-                        </div>
+                        <span className='h-px w-6 bg-current sm:w-10' />
                     </div>
+                    <p className='mt-5 max-w-xl text-base text-white/80 sm:text-lg'>
+                        Tee times, transfers and sightseeing in Northern Thailand — arranged for you.
+                    </p>
+                    <div className='mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row'>
+                        <Link href='/golf-holidays' className='btn-lux-gold inline-flex items-center justify-center gap-2'>
+                            Explore Golf Holidays
+                            <ArrowRight className='size-3.5' />
+                        </Link>
+                        <Link
+                            href={bookingLink}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
+                            Book on WhatsApp
+                        </Link>
+                    </div>
+                </div>
+
+                {/* USP strip */}
+                <div className='border-t border-white/15 bg-[#0f2a1f]/35 backdrop-blur-md'>
+                    <ul className='mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-3 px-5 py-4 text-white sm:px-6 lg:grid-cols-4 lg:px-8'>
+                        {heroUsps.map(({ label, icon: Icon }) => (
+                            <li key={label} className='flex items-center gap-2.5 lg:justify-center'>
+                                <Icon className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
+                                <span className='text-[0.72rem] text-white/85 sm:text-sm'>{label}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </section>
 
@@ -107,51 +142,31 @@ const HomePage = () => {
                         </Link>
                     </div>
 
-                    <div className='mt-12 grid gap-5 md:grid-cols-3'>
-                        {holidayTiers.map((tier, index) => {
-                            const pkg = getHolidayPackage(tier.id, 3);
-                            const cover = pkg.courses[0]?.image;
-
-                            return (
-                                <Link
-                                    key={tier.id}
-                                    href='/golf-holidays#packages'
-                                    data-reveal='card'
-                                    style={{ transitionDelay: `${index * 90}ms` }}
-                                    className='group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-md p-7 text-white'>
-                                    <CourseImage
-                                        src={cover}
-                                        alt={tier.name}
-                                        className='absolute inset-0 -z-10'
-                                        imgClassName='transition duration-700 group-hover:scale-105'
-                                    />
-                                    <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.05)_25%,rgba(10,28,20,0.9)_100%)]' />
-                                    <h3 className='travel-display text-4xl'>{tier.name}</h3>
-                                    <p className='mt-2 text-sm text-white/75'>{pkg.courses.map((c) => c.shortName).join(' · ')}</p>
-                                    <div className='mt-5 flex items-end justify-between border-t border-white/25 pt-4'>
-                                        <p className='text-sm text-white/80'>
-                                            3 rounds from
-                                            <span className='travel-display block text-3xl text-white'>
-                                                {formatThb(pkg.golfFromPerGolfer4)}
-                                            </span>
-                                        </p>
-                                        <span className='flex size-10 items-center justify-center rounded-full border border-white/40 transition group-hover:bg-white group-hover:text-[#14382a]'>
-                                            <ArrowUpRight className='size-4' />
-                                        </span>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
+                    <PackageCards className='mt-12' />
                     <div className='mt-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left'>
                         <p className='text-xs text-slate-500'>Golf price per golfer, group of 4. Also 2× or 4× golf per week.</p>
                         <Link
-                            href='/golf-holidays#plan-your-week'
+                            href='#plan-your-week'
                             className='inline-flex items-center gap-2 border-b border-[#c9a85a]/70 pb-1 text-[0.7rem] font-semibold tracking-[0.2em] text-[#14382a] uppercase'>
                             Or plan your own week
                             <ArrowRight className='size-3.5' />
                         </Link>
                     </div>
+                </div>
+            </section>
+
+            {/* 3. Plan your own week */}
+            <section id='plan-your-week' className='relative isolate scroll-mt-20 overflow-hidden py-20 sm:py-28'>
+                <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
+                <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
+                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                    <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
+                        <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
+                            Or plan <span className='text-[#e2c886] italic'>your own week</span>
+                        </h2>
+                        <p className='mt-3 text-base text-white/75'>Choose a course or a day off for each day.</p>
+                    </div>
+                    <WeekPlanner />
                 </div>
             </section>
 
