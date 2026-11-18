@@ -115,7 +115,7 @@ export const golfCourses: GolfCourse[] = [
         image: '/images/golf/pimantip/green-bunker.webp',
         gallery: [
             { caption: 'Lake and mountain view', src: '/images/golf/pimantip/lake-mountains.webp' },
-            { caption: 'Fairway by the lake', src: '/images/golf/pimantip/fairway-lake.webp' }
+            { caption: 'Palms by the pond', src: '/images/golf/pimantip/palms-pond.webp' }
         ],
         priceStatus: 'draft',
         packages: [
