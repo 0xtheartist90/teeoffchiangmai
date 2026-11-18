@@ -80,11 +80,12 @@ export const golfCourses: GolfCourse[] = [
         drivingRange: false,
         description:
             'A compact nine-hole course with enough challenge to make the second loop interesting. Walk or share a cart.',
-        image: '/images/golf/sand-creek/cover.webp',
+        image: '/images/golf/sand-creek/lake-bunkers.webp',
         gallery: [
-            { caption: 'Green and approach', src: '/images/golf/sand-creek/cover.webp' },
-            { caption: 'Fairway' },
-            { caption: 'Golf cart' }
+            { caption: 'Wooden bridge over the water', src: '/images/golf/sand-creek/bridge.webp' },
+            { caption: 'Pond and mountain view', src: '/images/golf/sand-creek/pond.webp' },
+            { caption: 'Green at sunset', src: '/images/golf/sand-creek/sunset-green.webp' },
+            { caption: 'Green and flag', src: '/images/golf/sand-creek/green-flag.webp' }
         ],
         priceStatus: 'draft',
         packages: [
@@ -111,11 +112,10 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A convenient city course. Warm up at the driving range before playing two loops of nine.',
-        image: '/images/golf/pimantip/cover.webp',
+        image: '/images/golf/pimantip/green-bunker.webp',
         gallery: [
-            { caption: 'Lake and mountain view', src: '/images/golf/pimantip/cover.webp' },
-            { caption: 'Green' },
-            { caption: 'Driving range' }
+            { caption: 'Lake and mountain view', src: '/images/golf/pimantip/lake-mountains.webp' },
+            { caption: 'Fairway by the lake', src: '/images/golf/pimantip/fairway-lake.webp' }
         ],
         priceStatus: 'draft',
         packages: [
@@ -137,11 +137,11 @@ export const golfCourses: GolfCourse[] = [
         drivingRange: true,
         description:
             'A long-established Chiang Mai club popular with local golfers. Play a classic round close to town.',
-        image: '/images/golf/lanna/cover.webp',
+        image: '/images/golf/lanna/aerial.webp',
         gallery: [
-            { caption: 'Tree-lined fairway', src: '/images/golf/lanna/cover.webp' },
-            { caption: 'Tee-box view' },
-            { caption: 'Driving range' }
+            { caption: 'Green and bunkers', src: '/images/golf/lanna/green-bunkers.webp' },
+            { caption: 'Tree-lined fairway', src: '/images/golf/lanna/fairway.webp' },
+            { caption: 'Golf carts on the fairway', src: '/images/golf/lanna/carts-fairway.webp' }
         ],
         priceStatus: 'draft',
         packages: [
@@ -188,11 +188,12 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A premium par-72 course in Mae Rim with palm-lined fairways, mountain views and water hazards.',
-        image: '/images/golf/summit-green-valley/cover.webp',
+        image: '/images/golf/summit-green-valley/sunset-flag.webp',
         gallery: [
-            { caption: 'Palm-lined fairway', src: '/images/golf/summit-green-valley/palm-lined-fairway.webp' },
-            { caption: 'Water hole', src: '/images/golf/summit-green-valley/water-hole.webp' },
-            { caption: 'Clubhouse', src: '/images/golf/summit-green-valley/clubhouse.webp' }
+            { caption: 'Clubhouse and lakes from above', src: '/images/golf/summit-green-valley/aerial-clubhouse.webp' },
+            { caption: 'Palm-lined fairway', src: '/images/golf/summit-green-valley/fairway.webp' },
+            { caption: 'Sunset lounge', src: '/images/golf/summit-green-valley/sunset-lounge.webp' },
+            { caption: 'Cart fleet', src: '/images/golf/summit-green-valley/cart-fleet.webp' }
         ],
         // TODO: confirm before publishing
         priceStatus: 'proposed',

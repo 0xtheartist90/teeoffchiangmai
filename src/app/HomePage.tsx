@@ -27,13 +27,13 @@ const heroPoster = '/images/golf/hero-poster.webp';
 const courseMarquee = [
     '/images/golf/alpine/cover.webp',
     '/images/golf/hang-dong/cover.webp',
-    '/images/golf/summit-green-valley/palm-lined-fairway.webp',
-    '/images/golf/lanna/cover.webp',
+    '/images/golf/summit-green-valley/fairway.webp',
+    '/images/golf/lanna/green-bunkers.webp',
     '/images/golf/highlands/mountain-fairway.webp',
-    '/images/golf/pimantip/cover.webp',
+    '/images/golf/pimantip/green-bunker.webp',
     '/images/golf/alpine/mountain-panorama.webp',
-    '/images/golf/sand-creek/cover.webp',
-    '/images/golf/summit-green-valley/water-hole.webp',
+    '/images/golf/sand-creek/lake-bunkers.webp',
+    '/images/golf/summit-green-valley/aerial-clubhouse.webp',
     '/images/golf/highlands/bunker-green.webp'
 ]
 

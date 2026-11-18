@@ -21,7 +21,7 @@ const WhyChooseUsPage = () => {
     return (
         <main className='bg-[#f8f5ee] text-slate-900'>
             <SiteHeader />
-            <PageHero title='Why Tee Off Chiang Mai?' eyebrow='Why choose us' image='/images/golf/lanna/cover.webp' />
+            <PageHero title='Why Tee Off Chiang Mai?' eyebrow='Why choose us' image='/images/golf/lanna/aerial.webp' />
 
             <section className='relative py-14 sm:py-16' style={patternedLight}>
                 <div className='mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8'>
