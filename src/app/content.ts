@@ -88,3 +88,54 @@ export const sightseeing = [
         image: '/images/holidays/white-temple.webp'
     }
 ];
+
+const faqByQuestion = (q: string) => faqs.find((f) => f.question === q)!;
+
+/** FAQ page, grouped. New answers are based on the price sheet and the site's own packages. */
+export const faqGroups = [
+    {
+        title: 'Golf days',
+        items: [
+            faqByQuestion('What’s included in the golf day price?'),
+            {
+                question: 'What time is hotel pickup?',
+                answer: 'Pickup is between 6:00 and 11:00 AM, depending on your tee time. We confirm the exact time when we book your round.'
+            },
+            {
+                question: 'Do you pick up outside the city centre?',
+                answer: 'The listed prices include round-trip transfers within 20 km of Chiang Mai city centre. Staying further out? Tell us where and we’ll confirm the transfer.'
+            },
+            {
+                question: 'Which course should I choose?',
+                answer: 'Hang Dong and Sand Creek are relaxed nine-hole layouts close to town. Pimantip and Lanna are classic city courses. Chiang Mai Highlands, Summit Green Valley and Alpine are scenic championship-style rounds. Tell us your level and we’ll suggest one.'
+            },
+            faqByQuestion('Can you arrange rental clubs and caddies?'),
+            faqByQuestion('Can we stop at a convenience store or have dinner after golf?')
+        ]
+    },
+    {
+        title: 'Golf holidays',
+        items: [
+            {
+                question: 'How do the golf holiday packages work?',
+                answer: 'Choose 2, 3 or 4 rounds per week, then Essential, Classic or Premium courses. The package price covers green fees and hotel transfers on golf days. Hotels and sightseeing days are quoted for your group.'
+            },
+            {
+                question: 'Can I plan my own week?',
+                answer: 'Yes. Use the week planner on the Golf Holidays page to pick a course or a day trip for each day. It shows an estimate, and you can send the plan to us on WhatsApp.'
+            },
+            faqByQuestion('Can you arrange a booking for a larger group?')
+        ]
+    },
+    {
+        title: 'Booking & payment',
+        items: [
+            faqByQuestion('Do I need to pay a deposit?'),
+            faqByQuestion('Do you offer rain checks?'),
+            {
+                question: 'Are prices in euros or dollars?',
+                answer: 'Our prices are in Thai baht. The euro and dollar amounts on the site are approximate, based on the latest exchange rate.'
+            }
+        ]
+    }
+];
