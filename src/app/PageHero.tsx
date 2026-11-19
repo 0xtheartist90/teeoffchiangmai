@@ -5,16 +5,12 @@ type PageHeroProps = {
     subtitle?: string;
     eyebrow?: string;
     image?: string;
-    /** Taller hero, e.g. for main product pages. */
-    tall?: boolean;
     children?: ReactNode;
 };
 
-const PageHero = ({ title, subtitle, image = '/images/golf/alpine/cover.webp', tall = false, children }: PageHeroProps) => (
+const PageHero = ({ title, subtitle, image = '/images/golf/alpine/cover.webp', children }: PageHeroProps) => (
     <section
-        className={`relative isolate flex items-end overflow-hidden text-white ${
-            tall ? 'min-h-[78svh] lg:min-h-[640px]' : 'min-h-[380px] sm:min-h-[440px] lg:min-h-[500px]'
-        }`}
+        className='relative isolate flex min-h-[78svh] items-end overflow-hidden text-white lg:h-[640px] lg:min-h-0'
         style={{ backgroundImage: `url('${image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.45)_0%,rgba(10,28,20,0.25)_40%,rgba(10,28,20,0.85)_100%)]' />
         <div className='mx-auto w-full max-w-[90rem] px-5 pb-14 sm:px-6 sm:pb-16 lg:px-8'>

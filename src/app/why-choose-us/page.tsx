@@ -29,7 +29,6 @@ const WhyChooseUsPage = () => {
             <SiteHeader />
 
             <PageHero
-                tall
                 title={
                     <>
                         We handle the booking. <span className='text-[#e2c886] italic'>You play the round.</span>

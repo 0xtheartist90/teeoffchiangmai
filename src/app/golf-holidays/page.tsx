@@ -32,7 +32,6 @@ const GolfHolidaysPage = () => {
             <SiteHeader />
 
             <PageHero
-                tall
                 title={
                     <>
                         Golf holidays <span className='text-[#e2c886] italic'>in Northern Thailand</span>
