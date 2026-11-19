@@ -94,12 +94,12 @@ const GolfHolidaysPage = () => {
             </section>
 
             {/* Days off */}
-            <section className='relative bg-[#10291f] py-20 text-white sm:py-24'>
-                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
-                    <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
-                        Between <span className='text-[#e2c886] italic'>rounds</span>
+            <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
+                <div className='mx-auto max-w-[90rem] px-5 text-white sm:px-6 lg:px-8'>
+                    <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
+                        Between <span className='italic'>rounds</span>
                     </h2>
-                    <p className='mt-3 text-base text-white/70'>Private day trips with our own drivers — price per car for your group.</p>
+                    <p className='mt-3 text-base text-slate-600'>Private day trips with our own drivers — price per car for your group.</p>
                     <div className='mt-10 grid gap-5 md:grid-cols-3'>
                         {sightseeingTrips.slice(0, 3).map((item, index) => (
                             <article
