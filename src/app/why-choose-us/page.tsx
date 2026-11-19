@@ -54,7 +54,7 @@ const WhyChooseUsPage = () => {
 
             {/* About us */}
             <section id='about' className='leaf-overlay relative py-20 sm:py-28' style={patternedLight}>
-                <div className='mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:px-8'>
+                <div className='mx-auto grid max-w-[90rem] gap-12 px-5 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:px-8'>
                     <div data-reveal='text-left'>
                         <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
                             About us. <span className='italic'>Golfers, first.</span>

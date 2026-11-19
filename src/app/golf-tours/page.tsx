@@ -41,7 +41,7 @@ const GolfDaysPage = () => {
                     backgroundPosition: 'center'
                 }}>
                 <div className='absolute inset-0 -z-10 bg-[#0f2a1f]/72' />
-                <div className='mx-auto flex max-w-6xl flex-col gap-8 px-5 text-white sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8'>
+                <div className='mx-auto flex max-w-[90rem] flex-col gap-8 px-5 text-white sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8'>
                     <div className='max-w-xl'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-6xl'>
                             Staying a week? <span className='text-[#e2c886] italic'>Make it a golf holiday.</span>

@@ -75,7 +75,7 @@ const HomePage = () => {
                 </video>
                 <div className='absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(10,28,20,0.25)_0%,rgba(10,28,20,0.55)_70%),linear-gradient(180deg,rgba(10,28,20,0.55)_0%,rgba(10,28,20,0.1)_35%,rgba(10,28,20,0.35)_70%,rgba(10,28,20,0.85)_100%)]' />
 
-                <div className='mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-5 pt-28 pb-10 text-center text-white sm:px-6 lg:px-8'>
+                <div className='mx-auto flex w-full max-w-[90rem] flex-1 flex-col items-center justify-center px-5 pt-28 pb-10 text-center text-white sm:px-6 lg:px-8'>
                     <img
                         src='/images/brand/logo-stacked-light.webp'
                         alt='Tee Off Chiang Mai'
@@ -110,7 +110,7 @@ const HomePage = () => {
 
                 {/* USP strip */}
                 <div className='border-t border-white/15 bg-[#0f2a1f]/35 backdrop-blur-md'>
-                    <ul className='mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-3 px-5 py-4 text-white sm:px-6 lg:grid-cols-4 lg:px-8'>
+                    <ul className='mx-auto grid max-w-[90rem] grid-cols-2 gap-x-4 gap-y-3 px-5 py-4 text-white sm:px-6 lg:grid-cols-4 lg:px-8'>
                         {heroUsps.map(({ label, icon: Icon }) => (
                             <li key={label} className='flex items-center gap-2.5 lg:justify-center'>
                                 <Icon className='size-4 flex-none text-[#e2c886]' strokeWidth={1.5} />
@@ -123,7 +123,7 @@ const HomePage = () => {
 
             {/* 2. Golf holiday packages (main product) */}
             <section className='leaf-overlay relative py-20 sm:py-28' style={patternedLight}>
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
                         <div className='max-w-2xl'>
                             <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.6rem]'>
@@ -156,7 +156,7 @@ const HomePage = () => {
             <section id='plan-your-week' className='relative isolate scroll-mt-20 overflow-hidden py-20 sm:py-28'>
                 <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                             Or plan <span className='text-[#e2c886] italic'>your own week</span>
@@ -184,7 +184,7 @@ const HomePage = () => {
 
             {/* 3. How it works */}
             <section className='leaf-overlay relative border-t border-[#14382a]/8 py-14 sm:py-16' style={patternedLight}>
-                <div className='mx-auto grid max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center lg:px-8'>
+                <div className='mx-auto grid max-w-[90rem] gap-10 px-5 sm:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center lg:px-8'>
                     <h2 className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
                         Three steps <span className='italic'>to the first tee</span>
                     </h2>
@@ -250,7 +250,7 @@ const HomePage = () => {
 
             {/* 5. The courses (secondary) */}
             <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between'>
                         <div>
                             <h2 className='travel-display text-[2.4rem] leading-tight text-[#14382a] sm:text-5xl'>

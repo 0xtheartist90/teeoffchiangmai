@@ -53,7 +53,7 @@ const GolfHolidaysPage = () => {
 
             {/* What's included */}
             <section className='leaf-overlay relative border-b border-[#14382a]/8 py-10 sm:py-12' style={patternedLight}>
-                <ul className='mx-auto grid max-w-6xl gap-x-6 gap-y-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
+                <ul className='mx-auto grid max-w-[90rem] gap-x-6 gap-y-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
                     {included.map(({ title, text, icon: Icon }) => (
                         <li key={title} className='flex items-center gap-4'>
                             <span className='lux-icon flex-none'>
@@ -70,7 +70,7 @@ const GolfHolidaysPage = () => {
 
             {/* Packages */}
             <section id='packages' className='leaf-overlay relative scroll-mt-20 py-20 sm:py-24' style={beigeSection}>
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <h2 className='travel-display mb-10 text-center text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
                         Choose <span className='italic'>your week of golf</span>
                     </h2>
@@ -82,7 +82,7 @@ const GolfHolidaysPage = () => {
             <section id='plan-your-week' className='relative isolate scroll-mt-20 overflow-hidden py-20 sm:py-28'>
                 <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                             Or plan <span className='text-[#e2c886] italic'>your own week</span>
@@ -95,7 +95,7 @@ const GolfHolidaysPage = () => {
 
             {/* Days off */}
             <section className='relative bg-[#10291f] py-20 text-white sm:py-24'>
-                <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                         Between <span className='text-[#e2c886] italic'>rounds</span>
                     </h2>

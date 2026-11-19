@@ -127,7 +127,7 @@ const GolfDaysListing = () => {
         <>
             {/* Toolbar */}
             <div className='sticky top-[65px] z-30 border-b border-[#14382a]/10 bg-[#f8f5ee]/95 backdrop-blur-xl sm:top-[81px]'>
-                <div className='mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-3 sm:px-6 lg:px-8'>
+                <div className='mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-3 sm:px-6 lg:px-8'>
                     <div className='flex items-center gap-3'>
                         <span className='text-[0.62rem] font-semibold tracking-[0.24em] text-slate-500 uppercase'>Golfers</span>
                         <button
@@ -169,7 +169,7 @@ const GolfDaysListing = () => {
             </div>
 
             <div className='leaf-overlay'>
-            <div className='mx-auto grid max-w-6xl gap-20 px-5 py-16 sm:px-6 sm:py-20 lg:gap-28 lg:px-8'>
+            <div className='mx-auto grid max-w-[90rem] gap-20 px-5 py-16 sm:px-6 sm:py-20 lg:gap-28 lg:px-8'>
                 {courses.map((course, index) => (
                     <CourseRow key={course.slug} course={course} golfers={golfers} flip={index % 2 === 1} />
                 ))}

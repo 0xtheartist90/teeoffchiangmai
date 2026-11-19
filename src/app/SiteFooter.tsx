@@ -14,7 +14,7 @@ const SiteFooter = () => {
             <div className='h-px bg-[linear-gradient(90deg,transparent,rgba(201,168,90,0.7),transparent)]' />
 
             {/* CTA strip */}
-            <div className='mx-auto flex max-w-6xl flex-col gap-6 px-5 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8'>
+            <div className='mx-auto flex max-w-[90rem] flex-col gap-6 px-5 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8'>
                 <div className='flex items-center gap-6'>
                     <img
                         src='/images/brand/logo-stacked-light.webp'
@@ -47,7 +47,7 @@ const SiteFooter = () => {
             </div>
 
             {/* Link columns */}
-            <div className='mx-auto grid max-w-6xl gap-10 border-t border-white/10 px-5 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
+            <div className='mx-auto grid max-w-[90rem] gap-10 border-t border-white/10 px-5 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
                 <div>
                     <p className={columnTitle}>Explore</p>
                     <nav className='mt-5 grid gap-3'>
@@ -115,14 +115,14 @@ const SiteFooter = () => {
 
             {/* Big wordmark */}
             <div aria-hidden='true' className='pointer-events-none select-none overflow-hidden px-5 sm:px-6 lg:px-8'>
-                <p className='travel-display mx-auto max-w-6xl translate-y-[18%] text-center text-[min(12.5vw,9.4rem)] leading-[0.8] whitespace-nowrap text-white/[0.06]'>
+                <p className='travel-display mx-auto max-w-[90rem] translate-y-[18%] text-center text-[min(12.5vw,9.4rem)] leading-[0.8] whitespace-nowrap text-white/[0.06]'>
                     Tee Off <span className='italic'>Chiang Mai</span>
                 </p>
             </div>
 
             {/* Bottom bar */}
             <div className='relative border-t border-white/10'>
-                <div className='mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-white/45 sm:flex-row sm:justify-between sm:px-6 lg:px-8'>
+                <div className='mx-auto flex max-w-[90rem] flex-col gap-2 px-5 py-6 text-xs text-white/45 sm:flex-row sm:justify-between sm:px-6 lg:px-8'>
                     <p>© {new Date().getFullYear()} Tee Off Chiang Mai. Golf holidays and golf days in Northern Thailand.</p>
                     <p>From the team behind Chiang Mai Driver.</p>
                 </div>

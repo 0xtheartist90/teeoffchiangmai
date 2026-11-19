@@ -33,7 +33,7 @@ const SiteHeader = ({ overlay = false }: { overlay?: boolean }) => {
                     ? 'border-transparent bg-transparent'
                     : 'border-[#14382a]/8 bg-[rgba(248,245,238,0.92)] backdrop-blur-xl'
             }`}>
-            <div className='mx-auto max-w-6xl px-5 py-3 sm:px-6 sm:py-4 lg:px-8'>
+            <div className='mx-auto max-w-[90rem] px-5 py-3 sm:px-6 sm:py-4 lg:px-8'>
                 <div className='relative flex items-center justify-center md:hidden'>
                     <div className='absolute right-0'>
                         <MobileNavMenu light={transparent} />
