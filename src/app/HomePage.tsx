@@ -86,16 +86,13 @@ const HomePage = () => {
                     <h1 className='travel-display mt-6 text-[clamp(2.1rem,9.2vw,5.75rem)] leading-[0.95] whitespace-nowrap sm:mt-8'>
                         Play golf in <span className='text-[#e2c886] italic'>Chiang Mai</span>
                     </h1>
-                    <div className='mt-5 flex items-center gap-4 text-[#e2c886]/80'>
-                        <span className='h-px w-6 bg-current sm:w-10' />
-                        <p className='text-[0.62rem] font-semibold tracking-[0.22em] whitespace-nowrap uppercase sm:text-[0.68rem] sm:tracking-[0.3em]'>
-                            Golf holidays · Golf days
+                    <div className='mt-5 flex items-center gap-3 text-[#e2c886]/80 sm:gap-4'>
+                        <span className='h-px w-4 bg-current sm:w-10' />
+                        <p className='text-[0.6rem] font-semibold tracking-[0.16em] whitespace-nowrap uppercase sm:text-[0.68rem] sm:tracking-[0.3em]'>
+                            Tee times · Transfers · Sightseeing
                         </p>
-                        <span className='h-px w-6 bg-current sm:w-10' />
+                        <span className='h-px w-4 bg-current sm:w-10' />
                     </div>
-                    <p className='mt-5 max-w-xl text-base text-white/80 sm:text-lg'>
-                        Tee times, transfers and sightseeing in Northern Thailand — arranged for you.
-                    </p>
                     <div className='mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row'>
                         <Link href='/golf-holidays' className='btn-lux-gold inline-flex items-center justify-center gap-2'>
                             Explore Golf Holidays
