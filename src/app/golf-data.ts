@@ -112,9 +112,9 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A convenient city course. Warm up at the driving range before playing two loops of nine.',
-        image: '/images/golf/pimantip/green-bunker.webp',
+        image: '/images/golf/pimantip/lake-mountains.webp',
         gallery: [
-            { caption: 'Lake and mountain view', src: '/images/golf/pimantip/lake-mountains.webp' },
+            { caption: 'Green and bunker', src: '/images/golf/pimantip/green-bunker.webp' },
             { caption: 'Palms by the pond', src: '/images/golf/pimantip/palms-pond.webp' }
         ],
         priceStatus: 'draft',
@@ -162,10 +162,10 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A scenic Mae On resort course with mountain views and well-placed bunkers that reward accuracy.',
-        image: '/images/golf/highlands/cover.webp',
+        image: '/images/golf/highlands/bunker-green.webp',
         gallery: [
+            { caption: 'Tee view over the valley', src: '/images/golf/highlands/cover.webp' },
             { caption: 'Mountain-backed fairway', src: '/images/golf/highlands/mountain-fairway.webp' },
-            { caption: 'Bunker-framed green', src: '/images/golf/highlands/bunker-green.webp' },
             { caption: 'Sunrise over the course', src: '/images/golf/highlands/sunrise.webp' }
         ],
         // TODO: confirm before publishing
@@ -188,10 +188,10 @@ export const golfCourses: GolfCourse[] = [
         playOptions: 'Cart included',
         drivingRange: true,
         description: 'A premium par-72 course in Mae Rim with palm-lined fairways, mountain views and water hazards.',
-        image: '/images/golf/summit-green-valley/sunset-flag.webp',
+        image: '/images/golf/summit-green-valley/fairway.webp',
         gallery: [
+            { caption: 'Sunset over the green', src: '/images/golf/summit-green-valley/sunset-flag.webp' },
             { caption: 'Clubhouse and lakes from above', src: '/images/golf/summit-green-valley/aerial-clubhouse.webp' },
-            { caption: 'Palm-lined fairway', src: '/images/golf/summit-green-valley/fairway.webp' },
             { caption: 'Sunset lounge', src: '/images/golf/summit-green-valley/sunset-lounge.webp' },
             { caption: 'Cart fleet', src: '/images/golf/summit-green-valley/cart-fleet.webp' }
         ],
