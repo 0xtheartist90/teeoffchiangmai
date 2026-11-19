@@ -125,7 +125,7 @@ const HomePage = () => {
             <section className='leaf-overlay relative py-20 sm:py-28' style={patternedLight}>
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
-                        <div className='max-w-2xl'>
+                        <div data-reveal='text-left' className='max-w-2xl'>
                             <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.6rem]'>
                                 Golf holidays <span className='italic'>in Northern Thailand</span>
                             </h2>
@@ -157,13 +157,15 @@ const HomePage = () => {
                 <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
-                    <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
+                    <div data-reveal className='mx-auto mb-10 max-w-2xl text-center text-white'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                             Or plan <span className='text-[#e2c886] italic'>your own week</span>
                         </h2>
                         <p className='mt-3 text-base text-white/75'>Choose a course or a day off for each day.</p>
                     </div>
-                    <WeekPlanner />
+                    <div data-reveal='soft-scale'>
+                        <WeekPlanner />
+                    </div>
                 </div>
             </section>
 
@@ -185,7 +187,7 @@ const HomePage = () => {
             {/* 3. How it works */}
             <section className='leaf-overlay relative border-t border-[#14382a]/8 py-14 sm:py-16' style={patternedLight}>
                 <div className='mx-auto grid max-w-[90rem] gap-10 px-5 sm:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center lg:px-8'>
-                    <h2 className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
+                    <h2 data-reveal='text-left' className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
                         Three steps <span className='italic'>to the first tee</span>
                     </h2>
                     <ol className='grid gap-8 sm:grid-cols-3 sm:gap-6'>
@@ -229,8 +231,12 @@ const HomePage = () => {
                             Five years of private tours in Northern Thailand — now for golfers.
                         </p>
                         <ul className='mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2'>
-                            {services.map(({ title, icon: Icon }) => (
-                                <li key={title} className='flex items-center gap-4'>
+                            {services.map(({ title, icon: Icon }, index) => (
+                                <li
+                                    key={title}
+                                    data-reveal='step'
+                                    style={{ transitionDelay: `${150 + index * 90}ms` }}
+                                    className='flex items-center gap-4'>
                                     <span className='flex size-11 flex-none items-center justify-center rounded-full border border-[#c9a85a]/60 text-[#e2c886]'>
                                         <Icon className='size-[1.1rem]' strokeWidth={1.5} />
                                     </span>
@@ -252,7 +258,7 @@ const HomePage = () => {
             <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between'>
-                        <div>
+                        <div data-reveal='text-left'>
                             <h2 className='travel-display text-[2.4rem] leading-tight text-[#14382a] sm:text-5xl'>
                                 The courses <span className='italic'>in your packages</span>
                             </h2>
@@ -264,10 +270,12 @@ const HomePage = () => {
                         </Link>
                     </div>
                     <div className='-mx-5 mt-10 flex snap-x gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:px-0 lg:grid lg:grid-cols-7 lg:gap-3 lg:overflow-visible'>
-                        {golfCourses.map((course) => (
+                        {golfCourses.map((course, index) => (
                             <Link
                                 key={course.slug}
                                 href={`/golf-tours#${course.slug}`}
+                                data-reveal='card'
+                                style={{ transitionDelay: `${index * 70}ms` }}
                                 className='group relative isolate flex aspect-[3/4] w-40 flex-none snap-start flex-col justify-end overflow-hidden rounded-md p-3 text-white lg:w-auto'>
                                 <CourseImage
                                     src={course.image}

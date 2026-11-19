@@ -53,8 +53,12 @@ const GolfHolidaysPage = () => {
             {/* What's included */}
             <section className='leaf-overlay relative border-b border-[#14382a]/8 py-10 sm:py-12' style={patternedLight}>
                 <ul className='mx-auto grid max-w-[90rem] gap-x-6 gap-y-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
-                    {included.map(({ title, text, icon: Icon }) => (
-                        <li key={title} className='flex items-center gap-4'>
+                    {included.map(({ title, text, icon: Icon }, index) => (
+                        <li
+                            key={title}
+                            data-reveal='card'
+                            style={{ transitionDelay: `${index * 90}ms` }}
+                            className='flex items-center gap-4'>
                             <span className='lux-icon flex-none'>
                                 <Icon className='size-[1.1rem]' strokeWidth={1.5} />
                             </span>
@@ -70,7 +74,7 @@ const GolfHolidaysPage = () => {
             {/* Packages */}
             <section id='packages' className='leaf-overlay relative scroll-mt-20 py-20 sm:py-24' style={beigeSection}>
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
-                    <h2 className='travel-display mb-10 text-center text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
+                    <h2 data-reveal className='travel-display mb-10 text-center text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
                         Choose <span className='italic'>your week of golf</span>
                     </h2>
                     <HolidayPackages />
@@ -82,23 +86,25 @@ const GolfHolidaysPage = () => {
                 <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
-                    <div className='mx-auto mb-10 max-w-2xl text-center text-white'>
+                    <div data-reveal className='mx-auto mb-10 max-w-2xl text-center text-white'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                             Or plan <span className='text-[#e2c886] italic'>your own week</span>
                         </h2>
                         <p className='mt-3 text-base text-white/75'>Choose a course or a day off for each day.</p>
                     </div>
-                    <WeekPlanner />
+                    <div data-reveal='soft-scale'>
+                        <WeekPlanner />
+                    </div>
                 </div>
             </section>
 
             {/* Days off */}
             <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
                 <div className='mx-auto max-w-[90rem] px-5 text-white sm:px-6 lg:px-8'>
-                    <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
+                    <h2 data-reveal='text-left' className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
                         Between <span className='italic'>rounds</span>
                     </h2>
-                    <p className='mt-3 text-base text-slate-600'>Private day trips with our own drivers — price per car for your group.</p>
+                    <p data-reveal='text-left' style={{ transitionDelay: '100ms' }} className='mt-3 text-base text-slate-600'>Private day trips with our own drivers — price per car for your group.</p>
                     <div className='mt-10 grid gap-5 md:grid-cols-3'>
                         {sightseeingTrips.slice(0, 3).map((item, index) => (
                             <article
@@ -149,7 +155,7 @@ const GolfHolidaysPage = () => {
                 className='relative isolate overflow-hidden py-24 sm:py-32'
                 style={{ backgroundImage: "url('/images/golf/highlands/sunrise.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className='absolute inset-0 -z-10 bg-[#0f2a1f]/70' />
-                <div className='mx-auto max-w-3xl px-5 text-center text-white sm:px-6'>
+                <div data-reveal='soft-scale' className='mx-auto max-w-3xl px-5 text-center text-white sm:px-6'>
                     <h2 className='travel-display text-[2.6rem] leading-tight sm:text-6xl'>
                         Two weeks? Bigger group? <span className='text-[#e2c886] italic'>We’ll plan it.</span>
                     </h2>

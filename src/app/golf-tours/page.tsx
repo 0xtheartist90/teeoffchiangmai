@@ -42,13 +42,13 @@ const GolfDaysPage = () => {
                 }}>
                 <div className='absolute inset-0 -z-10 bg-[#0f2a1f]/72' />
                 <div className='mx-auto flex max-w-[90rem] flex-col gap-8 px-5 text-white sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8'>
-                    <div className='max-w-xl'>
+                    <div data-reveal='text-left' className='max-w-xl'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-6xl'>
                             Staying a week? <span className='text-[#e2c886] italic'>Make it a golf holiday.</span>
                         </h2>
                         <p className='mt-4 text-base text-white/75'>Golf holiday packages with 2, 3 or 4 rounds and days out in between.</p>
                     </div>
-                    <div className='flex flex-col gap-3 sm:flex-row'>
+                    <div data-reveal='text-right' style={{ transitionDelay: '120ms' }} className='flex flex-col gap-3 sm:flex-row'>
                         <Link href='/golf-holidays' className='btn-lux-gold inline-flex items-center justify-center gap-2'>
                             Golf holidays
                             <ArrowRight className='size-3.5' />

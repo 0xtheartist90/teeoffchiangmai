@@ -116,12 +116,16 @@ const WhyChooseUsPage = () => {
                 </div>
                 <div className='flex items-center px-5 py-16 sm:px-10 lg:px-16'>
                     <div className='w-full max-w-lg'>
-                        <h2 className='travel-display text-[2.6rem] leading-tight sm:text-5xl'>
+                        <h2 data-reveal='text-left' className='travel-display text-[2.6rem] leading-tight sm:text-5xl'>
                             What we <span className='text-[#e2c886] italic'>take care of</span>
                         </h2>
                         <ul className='mt-10 grid gap-7'>
-                            {services.map(({ title, icon: Icon }) => (
-                                <li key={title} className='flex items-start gap-4'>
+                            {services.map(({ title, icon: Icon }, index) => (
+                                <li
+                                    key={title}
+                                    data-reveal='step'
+                                    style={{ transitionDelay: `${100 + index * 90}ms` }}
+                                    className='flex items-start gap-4'>
                                     <span className='flex size-11 flex-none items-center justify-center rounded-full border border-[#c9a85a]/60 text-[#e2c886]'>
                                         <Icon className='size-[1.1rem]' strokeWidth={1.5} />
                                     </span>
@@ -141,7 +145,7 @@ const WhyChooseUsPage = () => {
                 className='relative isolate overflow-hidden py-24 sm:py-28'
                 style={{ backgroundImage: "url('/images/golf/highlands/sunrise.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className='absolute inset-0 -z-10 bg-[#0f2a1f]/70' />
-                <div className='mx-auto max-w-3xl px-5 text-center text-white sm:px-6'>
+                <div data-reveal='soft-scale' className='mx-auto max-w-3xl px-5 text-center text-white sm:px-6'>
                     <h2 className='travel-display text-[2.6rem] leading-tight sm:text-6xl'>
                         Let’s plan <span className='text-[#e2c886] italic'>your round.</span>
                     </h2>

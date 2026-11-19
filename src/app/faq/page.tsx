@@ -36,7 +36,7 @@ const FaqPage = () => {
             <section className='leaf-overlay py-16 sm:py-24'>
                 <div className='mx-auto grid max-w-[90rem] gap-12 px-5 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16 lg:px-8'>
                     {/* Sticky side panel */}
-                    <aside className='order-2 lg:sticky lg:top-28 lg:order-1 lg:self-start'>
+                    <aside data-reveal='text-left' className='order-2 lg:sticky lg:top-28 lg:order-1 lg:self-start'>
                         <nav className='hidden lg:block'>
                             <ul className='grid gap-1 border-l border-[#14382a]/12'>
                                 {faqGroups.map((group) => (
@@ -85,13 +85,15 @@ const FaqPage = () => {
                     <div className='order-1 grid gap-14 lg:order-2'>
                         {faqGroups.map((group, groupIndex) => (
                             <div key={group.title} id={slug(group.title)} className='scroll-mt-28'>
-                                <h2 className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
+                                <h2 data-reveal className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
                                     {group.title}
                                 </h2>
                                 <div className='mt-5 border-t border-[#14382a]/15'>
                                     {group.items.map((faq, index) => (
                                         <details
                                             key={faq.question}
+                                            data-reveal='faq-item'
+                                            style={{ transitionDelay: `${index * 60}ms` }}
                                             open={groupIndex === 0 && index === 0}
                                             className='group border-b border-[#14382a]/15'>
                                             <summary className='flex cursor-pointer list-none items-center justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden'>

@@ -8,6 +8,7 @@ import { ThemeProvider } from 'next-themes';
 
 import '@/app/globals.css';
 import RevealEffects from '@/app/RevealEffects';
+import SmoothScroll from '@/app/SmoothScroll';
 import { CurrencyProvider } from '@/app/currency';
 import { Toaster } from '@/registry/new-york-v4/ui/sonner';
 
@@ -42,6 +43,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${display.variable} bg-background text-foreground overscroll-none antialiased`}>
                 <ThemeProvider attribute='class'>
+                    <SmoothScroll />
                     <RevealEffects />
                     <CurrencyProvider>{children}</CurrencyProvider>
                     <Toaster />

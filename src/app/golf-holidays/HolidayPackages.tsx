@@ -39,7 +39,7 @@ const HolidayPackages = () => {
             </div>
 
             <div className='mt-10 grid gap-5 lg:grid-cols-3'>
-                {holidayTiers.map((tier) => {
+                {holidayTiers.map((tier, index) => {
                     const pkg = getHolidayPackage(tier.id, rounds);
                     const featured = tier.id === 'classic';
                     const enquiry = whatsappWithText(
@@ -51,6 +51,8 @@ const HolidayPackages = () => {
                     return (
                         <article
                             key={tier.id}
+                            data-reveal='card'
+                            style={{ transitionDelay: `${index * 110}ms` }}
                             className={`lux-card relative flex flex-col overflow-hidden ${featured ? 'lg:-mt-4 lg:mb-4 ring-1 ring-[#c9a85a]/70' : ''}`}>
                             <div className='relative h-44'>
                                 <CourseImage src={tier.image} alt={tier.name} className='absolute inset-0' />

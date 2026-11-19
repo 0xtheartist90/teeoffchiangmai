@@ -198,10 +198,6 @@
     font-family: var(--font-geist-sans);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   ::selection {
     background: color-mix(in oklab, var(--primary) 22%, white);
     color: var(--foreground);
