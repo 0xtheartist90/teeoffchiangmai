@@ -125,7 +125,7 @@ const HomePage = () => {
             </section>
 
             {/* 2. Golf holiday packages (main product) */}
-            <section className='relative py-20 sm:py-28' style={patternedLight}>
+            <section className='leaf-overlay relative py-20 sm:py-28' style={patternedLight}>
                 <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
                         <div className='max-w-2xl'>
@@ -186,7 +186,7 @@ const HomePage = () => {
             </section>
 
             {/* 3. How it works */}
-            <section className='relative border-t border-[#14382a]/8 py-14 sm:py-16' style={patternedLight}>
+            <section className='leaf-overlay relative border-t border-[#14382a]/8 py-14 sm:py-16' style={patternedLight}>
                 <div className='mx-auto grid max-w-6xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.8fr_2.2fr] lg:items-center lg:px-8'>
                     <h2 className='travel-display text-[2.2rem] leading-tight text-[#14382a] sm:text-[2.6rem]'>
                         Three steps <span className='italic'>to the first tee</span>
@@ -252,7 +252,7 @@ const HomePage = () => {
             </section>
 
             {/* 5. The courses (secondary) */}
-            <section className='relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
+            <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={patternedLight}>
                 <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
                     <div className='flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between'>
                         <div>

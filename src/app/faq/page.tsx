@@ -33,7 +33,7 @@ const FaqPage = () => {
                 image='/images/golf/summit-green-valley/aerial-wide.webp'
             />
 
-            <section className='py-16 sm:py-24'>
+            <section className='leaf-overlay py-16 sm:py-24'>
                 <div className='mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16 lg:px-8'>
                     {/* Sticky side panel */}
                     <aside className='order-2 lg:sticky lg:top-28 lg:order-1 lg:self-start'>

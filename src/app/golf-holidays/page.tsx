@@ -52,7 +52,7 @@ const GolfHolidaysPage = () => {
             </PageHero>
 
             {/* What's included */}
-            <section className='relative border-b border-[#14382a]/8 py-10 sm:py-12' style={patternedLight}>
+            <section className='leaf-overlay relative border-b border-[#14382a]/8 py-10 sm:py-12' style={patternedLight}>
                 <ul className='mx-auto grid max-w-6xl gap-x-6 gap-y-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8'>
                     {included.map(({ title, text, icon: Icon }) => (
                         <li key={title} className='flex items-center gap-4'>
@@ -69,7 +69,7 @@ const GolfHolidaysPage = () => {
             </section>
 
             {/* Packages */}
-            <section id='packages' className='relative scroll-mt-20 py-20 sm:py-24' style={beigeSection}>
+            <section id='packages' className='leaf-overlay relative scroll-mt-20 py-20 sm:py-24' style={beigeSection}>
                 <div className='mx-auto max-w-6xl px-5 sm:px-6 lg:px-8'>
                     <h2 className='travel-display mb-10 text-center text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
                         Choose <span className='italic'>your week of golf</span>

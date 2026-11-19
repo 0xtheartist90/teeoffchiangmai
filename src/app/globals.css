@@ -386,3 +386,18 @@
   background: transparent;
 }
 .lux-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(201, 168, 90, 0.7), transparent); }
+
+/* Palm-leaf texture on light sections (from Birdiez). Sits behind content without changing child positioning. */
+.leaf-overlay { position: relative; isolation: isolate; }
+.leaf-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('/images/bg-overlay.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.45;
+}

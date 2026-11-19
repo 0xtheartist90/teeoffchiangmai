@@ -168,10 +168,12 @@ const GolfDaysListing = () => {
                 </div>
             </div>
 
+            <div className='leaf-overlay'>
             <div className='mx-auto grid max-w-6xl gap-20 px-5 py-16 sm:px-6 sm:py-20 lg:gap-28 lg:px-8'>
                 {courses.map((course, index) => (
                     <CourseRow key={course.slug} course={course} golfers={golfers} flip={index % 2 === 1} />
                 ))}
+            </div>
             </div>
         </>
     );
