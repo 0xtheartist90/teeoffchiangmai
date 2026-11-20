@@ -327,6 +327,8 @@ export const getHolidayPackage = (tierId: HolidayTier, rounds: RoundsPerWeek) =>
         courses,
         golfFromPerGolfer4: perGolfer(4),
         golfFromPerGolfer2: perGolfer(2),
+        /** Golf price per golfer for a group of 1–4 */
+        golfPerGolfer: perGolfer,
         includesProposedPrices: courses.some((c) => c.priceStatus === 'proposed')
     };
 };

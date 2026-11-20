@@ -3,40 +3,72 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Minus, Plus } from 'lucide-react';
 
 import CourseImage from '@/app/CourseImage';
 import type { RoundsPerWeek } from '@/app/golf-data';
-import { formatThb, getHolidayPackage, holidayTiers, roundsPerWeekOptions, whatsappWithText } from '@/app/golf-data';
+import { getHolidayPackage, holidayTiers, roundsPerWeekOptions, whatsappWithText } from '@/app/golf-data';
 import { Price } from '@/app/currency';
 
 
 const HolidayPackages = () => {
     const [rounds, setRounds] = useState<RoundsPerWeek>(3);
+    const [golfers, setGolfers] = useState<1 | 2 | 3 | 4>(2);
+    const changeGolfers = (delta: number) => setGolfers((n) => Math.min(4, Math.max(1, n + delta)) as 1 | 2 | 3 | 4);
 
     return (
         <div>
-            <div className='flex flex-col items-center gap-4'>
-                <p className='text-[0.66rem] font-semibold tracking-[0.3em] text-slate-500 uppercase'>Rounds per week</p>
-                <div role='tablist' aria-label='Rounds per week' className='inline-flex rounded-full border border-[#14382a]/15 bg-white p-1'>
-                    {roundsPerWeekOptions.map((option) => (
+            {/* Selection bar: golfers + rounds per week */}
+            <div className='mx-auto flex max-w-3xl flex-col items-stretch gap-4 rounded-md border border-[#14382a]/12 bg-white/80 px-5 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-6'>
+                <div className='flex items-center justify-between gap-4 sm:justify-start'>
+                    <span className='text-[0.62rem] font-semibold tracking-[0.24em] text-slate-500 uppercase'>Golfers</span>
+                    <div className='flex items-center gap-3'>
                         <button
-                            key={option}
                             type='button'
-                            role='tab'
-                            aria-selected={rounds === option}
-                            onClick={() => setRounds(option)}
-                            className={`rounded-full px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.18em] uppercase transition sm:px-7 ${
-                                rounds === option ? 'bg-[#14382a] text-[#f6efe0]' : 'text-[#14382a]/70 hover:text-[#14382a]'
-                            }`}>
-                            {option}× golf
+                            aria-label='Fewer golfers'
+                            disabled={golfers === 1}
+                            onClick={() => changeGolfers(-1)}
+                            className='flex size-9 items-center justify-center rounded-full border border-[#14382a]/20 text-[#14382a] transition hover:bg-[#14382a] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#14382a]'>
+                            <Minus className='size-3.5' />
                         </button>
-                    ))}
+                        <span aria-live='polite' className='travel-display w-5 text-center text-2xl text-[#14382a] tabular-nums'>
+                            {golfers}
+                        </span>
+                        <button
+                            type='button'
+                            aria-label='More golfers'
+                            disabled={golfers === 4}
+                            onClick={() => changeGolfers(1)}
+                            className='flex size-9 items-center justify-center rounded-full border border-[#14382a]/20 text-[#14382a] transition hover:bg-[#14382a] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#14382a]'>
+                            <Plus className='size-3.5' />
+                        </button>
+                    </div>
                 </div>
-                <p className='text-center text-sm text-slate-500'>
-                    {rounds} rounds · {7 - rounds} days to explore
-                </p>
+
+                <div className='hidden h-8 w-px bg-[#14382a]/12 sm:block' />
+
+                <div className='flex items-center justify-between gap-4 sm:justify-start'>
+                    <span className='text-[0.62rem] font-semibold tracking-[0.24em] text-slate-500 uppercase'>Rounds per week</span>
+                    <div role='tablist' aria-label='Rounds per week' className='inline-flex rounded-full border border-[#14382a]/15 bg-white p-1'>
+                        {roundsPerWeekOptions.map((option) => (
+                            <button
+                                key={option}
+                                type='button'
+                                role='tab'
+                                aria-selected={rounds === option}
+                                onClick={() => setRounds(option)}
+                                className={`rounded-full px-4 py-2 text-[0.7rem] font-semibold tracking-[0.16em] uppercase transition sm:px-5 ${
+                                    rounds === option ? 'bg-[#14382a] text-[#f6efe0]' : 'text-[#14382a]/70 hover:text-[#14382a]'
+                                }`}>
+                                {option}×
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
+            <p className='mt-3 text-center text-sm text-slate-500'>
+                {rounds} rounds of golf · {7 - rounds} days to explore
+            </p>
 
             <div className='mt-10 grid gap-5 lg:grid-cols-3'>
                 {holidayTiers.map((tier, index) => {
@@ -45,7 +77,7 @@ const HolidayPackages = () => {
                     const enquiry = whatsappWithText(
                         `Hi, I'm interested in the ${tier.name} golf holiday with ${rounds} rounds per week (${pkg.courses
                             .map((c) => c.shortName)
-                            .join(', ')}). Our dates and group size are: `
+                            .join(', ')}) for ${golfers} golfer${golfers > 1 ? 's' : ''}. Our dates are: `
                     );
 
                     return (
@@ -74,22 +106,19 @@ const HolidayPackages = () => {
                                 <p className='text-[0.92rem] leading-6 text-slate-600 italic'>{tier.tagline}</p>
 
                                 <div className='mt-5 border-y border-[#14382a]/10 py-4'>
-                                    <p className='text-[0.6rem] font-semibold tracking-[0.28em] text-[#9a7b3c] uppercase'>
-                                        Golf price per golfer
+                                    <p className='text-[0.6rem] font-semibold tracking-[0.28em] text-[#9a7b3c] uppercase'>Golf</p>
+                                    <p className='mt-1 flex flex-wrap items-baseline gap-x-2'>
+                                        <span className='travel-display text-[2.2rem] leading-none whitespace-nowrap text-[#14382a] tabular-nums'>
+                                            <Price thb={pkg.golfPerGolfer(golfers)} />
+                                        </span>
+                                        <span className='text-sm text-slate-500'>per golfer</span>
                                     </p>
-                                    <dl className='mt-3 grid gap-2'>
-                                        {[
-                                            { label: '2 golfers', thb: pkg.golfFromPerGolfer2 },
-                                            { label: '4 golfers', thb: pkg.golfFromPerGolfer4 }
-                                        ].map((row) => (
-                                            <div key={row.label} className='flex items-baseline justify-between gap-4'>
-                                                <dt className='text-sm text-slate-500'>{row.label}</dt>
-                                                <dd className='travel-display text-[1.9rem] leading-none text-[#14382a] tabular-nums'>
-                                                    <Price thb={row.thb} />
-                                                </dd>
-                                            </div>
-                                        ))}
-                                    </dl>
+                                    <p className='mt-3 flex items-baseline justify-between gap-4 text-sm text-slate-500'>
+                                        Total
+                                        <span className='font-semibold text-[#14382a] tabular-nums'>
+                                            <Price thb={pkg.golfPerGolfer(golfers) * golfers} />
+                                        </span>
+                                    </p>
                                 </div>
 
                                 <p className='mt-5 text-[0.6rem] font-semibold tracking-[0.28em] text-slate-500 uppercase'>
