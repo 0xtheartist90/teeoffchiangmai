@@ -113,7 +113,7 @@ const CourseRow = ({ course, flip }: { course: GolfCourse; flip: boolean }) => {
                                 </p>
                             </div>
                             <p className='pb-1 text-right text-sm text-slate-500'>
-                                {golfers > 1 ? `Total for ${golfers} golfers` : 'Total'}
+                                Total
                                 <br />
                                 <span className='font-semibold text-[#14382a] tabular-nums'>
                                     <Price thb={pkg.total[golfers - 1]} />
