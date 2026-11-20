@@ -8,10 +8,10 @@ import ParallaxBackground from '@/app/ParallaxBackground';
 import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
 import HolidayPackages from '@/app/golf-holidays/HolidayPackages';
+import SightseeingTrips from '@/app/golf-holidays/SightseeingTrips';
 import WeekPlanner from '@/app/golf-holidays/WeekPlanner';
-import { formatThb, holidayLink, sightseeingTrips } from '@/app/golf-data';
+import { holidayLink } from '@/app/golf-data';
 import { beigeSection, patternedLight } from '@/app/section-backgrounds';
-import { Price } from '@/app/currency';
 
 export const metadata: Metadata = {
     title: 'Golf Holidays | Tee Off Chiang Mai',
@@ -105,48 +105,7 @@ const GolfHolidaysPage = () => {
                         Between <span className='italic'>rounds</span>
                     </h2>
                     <p data-reveal='text-left' style={{ transitionDelay: '100ms' }} className='mt-3 text-base text-slate-600'>Private day trips with our own drivers — price per car for your group.</p>
-                    <div className='mt-10 grid gap-5 md:grid-cols-3'>
-                        {sightseeingTrips.slice(0, 3).map((item, index) => (
-                            <article
-                                key={item.id}
-                                data-reveal='card'
-                                style={{ transitionDelay: `${index * 90}ms` }}
-                                className='group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-md p-6'>
-                                <img
-                                    alt={item.name}
-                                    src={item.image}
-                                    className='absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105'
-                                />
-                                <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0)_40%,rgba(10,28,20,0.85)_100%)]' />
-                                <h3 className='travel-display text-3xl'>{item.name}</h3>
-                                <p className='mt-2 text-sm text-white/75'>{item.text}</p>
-                                <p className='mt-4 border-t border-white/25 pt-3 text-sm text-white/80'>
-                                    From <span className='travel-display text-2xl text-[#e2c886]'><Price thb={item.price} /></span> per car
-                                </p>
-                            </article>
-                        ))}
-                    </div>
-                    <div className='mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
-                        {sightseeingTrips.slice(3).map((item, index) => (
-                            <article
-                                key={item.id}
-                                data-reveal='card'
-                                style={{ transitionDelay: `${index * 90}ms` }}
-                                className='group relative isolate flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-md p-5'>
-                                <img
-                                    alt={item.name}
-                                    src={item.image}
-                                    className='absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105'
-                                />
-                                <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.15)_0%,rgba(10,28,20,0.9)_75%)]' />
-                                <h3 className='travel-display text-2xl leading-tight'>{item.name}</h3>
-                                <p className='mt-1 text-xs text-white/75'>{item.text}</p>
-                                <p className='mt-3 text-xs text-white/80'>
-                                    From <span className='travel-display text-xl text-[#e2c886]'><Price thb={item.price} /></span> per car
-                                </p>
-                            </article>
-                        ))}
-                    </div>
+                    <SightseeingTrips />
                 </div>
             </section>
 

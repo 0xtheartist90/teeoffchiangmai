@@ -335,14 +335,117 @@ export const getHolidayPackage = (tierId: HolidayTier, rounds: RoundsPerWeek) =>
 
 // ---- Sightseeing day trips (prices from Chiang Mai Driver tours: private car + driver for the group) ----
 
+export type TripStop = { time?: string; title: string; text: string };
+
 export const sightseeingTrips = [
-    { id: 'doi-inthanon', name: 'Doi Inthanon', price: 3200, image: '/images/holidays/doi-inthanon.webp', text: 'Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.' },
-    { id: 'sticky-waterfall', name: 'Doi Suthep & Sticky Waterfall', price: 2400, image: '/images/holidays/sticky-waterfall.webp', text: 'Climb the limestone cascades of Bua Tong, combined with Doi Suthep temple.' },
-    { id: 'chiang-rai', name: 'Chiang Rai & White Temple', price: 3400, image: '/images/holidays/white-temple.webp', text: 'Wat Rong Khun and the Big Buddha on a full day trip to Chiang Rai.' },
-    { id: 'temples', name: 'Temple & Culture Tour', price: 1900, image: '/images/holidays/temples.webp', text: 'The old city’s best-known temples and local culture.' },
-    { id: 'half-day', name: 'Half-day mountain temples', price: 1200, image: '/images/holidays/half-day.webp', text: 'Doi Suthep and a hidden temple by a waterfall.' },
-    { id: 'grand-canyon', name: 'Chiang Mai Grand Canyon', price: 1500, image: '/images/holidays/grand-canyon.webp', text: 'Swim and relax at the old quarry lake.' },
-    { id: 'own-route', name: 'Your own route (8 hours)', price: 2700, image: '/images/holidays/own-route.webp', text: 'A private driver for the day — you choose the stops.' }
+    {
+        id: 'doi-inthanon',
+        name: 'Doi Inthanon',
+        price: 3200,
+        duration: 'Full day · about 10 hours',
+        image: '/images/holidays/doi-inthanon.webp',
+        text: 'Thailand’s highest mountain, with waterfalls, viewpoints and the twin royal pagodas.',
+        plan: [
+            { time: '07:30 – 08:00', title: 'Hotel pickup', text: 'Your driver collects you from your hotel.' },
+            { title: 'Doi Inthanon National Park', text: 'A scenic drive up Thailand’s highest mountain.' },
+            { title: 'The summit', text: 'Cool mountain air and wide views from the highest point.' },
+            { title: 'Twin royal pagodas', text: 'Pagodas, flower gardens and calm surroundings.' },
+            { title: 'Lunch', text: 'Thai lunch at a local restaurant.' },
+            { title: 'Wachirathan Waterfall', text: 'One of the park’s most striking waterfalls.' },
+            { title: 'Mae Ya Waterfall', text: 'A wide, cascading curtain of water — one of Thailand’s most beautiful.' },
+            { time: '18:00 – 19:00', title: 'Back at your hotel', text: 'A relaxed drive back to Chiang Mai.' }
+        ]
+    },
+    {
+        id: 'sticky-waterfall',
+        name: 'Sticky Waterfall & Countryside',
+        price: 2400,
+        duration: 'Full day',
+        image: '/images/holidays/sticky-waterfall.webp',
+        text: 'Climb the limestone cascades of Bua Tong, with easy countryside stops along the way.',
+        plan: [
+            { title: 'Hotel pickup', text: 'At a time that suits you.' },
+            { title: 'Bua Tong Sticky Waterfall', text: 'Walk straight up the grippy limestone cascades — a Chiang Mai favourite.' },
+            { title: 'Dantewada Land of Angels', text: 'Gardens, water features and a photogenic countryside setting.' },
+            { title: 'Elephant sanctuary', text: 'Optional time with elephants in a calm, nature-focused setting.' },
+            { title: 'Wat Ban Den', text: 'Optional stop at this colourful temple complex.' },
+            { title: 'Back at your hotel', text: 'Or dropped off for dinner in town.' }
+        ]
+    },
+    {
+        id: 'chiang-rai',
+        name: 'Chiang Rai & White Temple',
+        price: 3400,
+        duration: 'Full day · about 11 hours',
+        image: '/images/holidays/white-temple.webp',
+        text: 'Wat Rong Khun and the Big Buddha on a full day trip to Chiang Rai.',
+        plan: [
+            { time: '07:30 – 08:00', title: 'Departure from your hotel', text: 'Morning drive north to Chiang Rai province.' },
+            { title: 'Mae Khachan Hot Spring', text: 'A short stop to stretch your legs.' },
+            { title: 'White Temple (Wat Rong Khun)', text: 'The famous all-white temple, full of artistic detail.' },
+            { title: 'Lunch', text: 'At a local restaurant.' },
+            { title: 'Big Buddha (Wat Huay Pla Kang)', text: 'A giant white statue and temple complex with wide views.' },
+            { time: '18:00 – 18:30', title: 'Back at your hotel', text: 'Return drive to Chiang Mai.' }
+        ]
+    },
+    {
+        id: 'temples',
+        name: 'Temple & Culture Tour',
+        price: 1900,
+        duration: 'Day trip',
+        image: '/images/holidays/temples.webp',
+        text: 'The old city’s best-known temples and local culture.',
+        plan: [
+            { title: 'Hotel pickup', text: 'At a time that suits you.' },
+            { title: 'Wat Phra That Doi Suthep', text: 'Chiang Mai’s iconic mountain temple, with views over the city.' },
+            { title: 'Wat Pha Lat', text: 'A peaceful forest temple with a hidden feel.' },
+            { title: 'Wat Umong', text: 'The historic tunnel temple and its shaded grounds.' },
+            { title: 'Old city temples', text: 'A selection of old city temples, based on your time and interests.' }
+        ]
+    },
+    {
+        id: 'half-day',
+        name: 'Half-day mountain temples',
+        price: 1200,
+        duration: 'Half day · about 5 hours',
+        image: '/images/holidays/half-day.webp',
+        text: 'Doi Suthep and a hidden temple by a waterfall.',
+        plan: [
+            { time: '08:30 – 09:30', title: 'Hotel pickup', text: 'An easy start to the day.' },
+            { title: 'Doi Suthep Temple', text: 'The iconic mountain temple, with wide views over Chiang Mai.' },
+            { title: 'Hidden temple by the waterfall', text: 'A quiet spot with water, greenery and a local feel.' },
+            { title: 'Time at the waterfall', text: 'Relax, dip your toes, or climb a little.' },
+            { time: '14:00 – 15:00', title: 'Drop-off', text: 'At your hotel, or a local restaurant or coffee shop.' }
+        ]
+    },
+    {
+        id: 'grand-canyon',
+        name: 'Chiang Mai Grand Canyon',
+        price: 1500,
+        duration: 'Half or full day',
+        image: '/images/holidays/grand-canyon.webp',
+        text: 'Swim and relax at the old quarry lake.',
+        plan: [
+            { title: 'Hotel pickup', text: 'At a time that suits you.' },
+            { title: 'Grand Canyon Waterpark', text: 'The old quarry lake just outside Chiang Mai.' },
+            { title: 'Your time at the park', text: 'Swimming, ziplining, wakeboarding or cliff jumping — or just relax.' },
+            { title: 'Back at your hotel', text: 'Leave whenever you’re ready.' }
+        ]
+    },
+    {
+        id: 'own-route',
+        name: 'Your own route (8 hours)',
+        price: 2700,
+        duration: 'Up to 8 hours',
+        image: '/images/holidays/own-route.webp',
+        text: 'A private driver for the day — you choose the stops.',
+        plan: [
+            { title: 'Private car and driver', text: 'For up to 8 hours, on the route you choose.' },
+            { title: 'Plan it your way', text: 'Send us your ideas and must-sees; we help shape a comfortable route.' },
+            { title: 'Fuel', text: 'Paid separately, based on the distance you drive.' },
+            { title: 'Extra time', text: 'Each hour after the first 8 is 300 THB.' }
+        ]
+    }
 ] as const;
 
 export type SightseeingTripId = (typeof sightseeingTrips)[number]['id'];
