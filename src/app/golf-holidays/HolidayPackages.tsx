@@ -75,14 +75,21 @@ const HolidayPackages = () => {
 
                                 <div className='mt-5 border-y border-[#14382a]/10 py-4'>
                                     <p className='text-[0.6rem] font-semibold tracking-[0.28em] text-[#9a7b3c] uppercase'>
-                                        Golf from
+                                        Golf price per golfer
                                     </p>
-                                    <p className='travel-display mt-1 text-[2.4rem] leading-none text-[#14382a]'>
-                                        <Price thb={pkg.golfFromPerGolfer4} />
-                                    </p>
-                                    <p className='mt-1.5 text-xs leading-5 text-slate-500'>
-                                        per golfer, group of 4 · <Price thb={pkg.golfFromPerGolfer2} /> per golfer for 2
-                                    </p>
+                                    <dl className='mt-3 grid gap-2'>
+                                        {[
+                                            { label: '2 golfers', thb: pkg.golfFromPerGolfer2 },
+                                            { label: '4 golfers', thb: pkg.golfFromPerGolfer4 }
+                                        ].map((row) => (
+                                            <div key={row.label} className='flex items-baseline justify-between gap-4'>
+                                                <dt className='text-sm text-slate-500'>{row.label}</dt>
+                                                <dd className='travel-display text-[1.9rem] leading-none text-[#14382a] tabular-nums'>
+                                                    <Price thb={row.thb} />
+                                                </dd>
+                                            </div>
+                                        ))}
+                                    </dl>
                                 </div>
 
                                 <p className='mt-5 text-[0.6rem] font-semibold tracking-[0.28em] text-slate-500 uppercase'>
