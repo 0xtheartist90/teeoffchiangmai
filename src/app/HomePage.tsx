@@ -99,7 +99,7 @@ const HomePage = () => {
                             Explore Golf Holidays
                             <ArrowRight className='size-3.5' />
                         </Link>
-                        <Link href='/golf-tours' className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
+                        <Link href='/golf-tours' className='btn-lux-ivory inline-flex items-center justify-center gap-2'>
                             Book a Golf Day
                             <ArrowRight className='size-3.5' />
                         </Link>

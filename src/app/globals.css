@@ -337,6 +337,7 @@
 
 .btn-lux,
 .btn-lux-gold,
+.btn-lux-ivory,
 .btn-lux-ghost,
 .btn-lux-ghost-light {
   height: auto;
@@ -354,6 +355,8 @@
 .btn-lux:hover { background: #1f4c39; color: #fff; }
 .btn-lux-gold { background: #c9a85a; color: #10291f; border: 1px solid #c9a85a; }
 .btn-lux-gold:hover { background: #d8bb73; color: #10291f; }
+.btn-lux-ivory { background: #f8f5ee; color: #14382a; border: 1px solid #f8f5ee; }
+.btn-lux-ivory:hover { background: #fff; color: #14382a; border-color: #fff; }
 .btn-lux-ghost { background: transparent; color: #14382a; border: 1px solid rgba(20, 56, 42, 0.28); }
 .btn-lux-ghost:hover { background: #14382a; color: #f6efe0; border-color: #14382a; }
 .btn-lux-ghost-light { background: rgba(255, 255, 255, 0.04); color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); backdrop-filter: blur(6px); }
