@@ -27,7 +27,7 @@ export const GoogleLogo = ({ className = 'size-5' }: { className?: string }) => 
 
 /** Google reviews of Chiang Mai Driver by May, clearly labelled with their source. */
 const GoogleReviewsBanner = ({ limit = 3 }: { limit?: number }) => (
-    <div className='grid gap-5 lg:grid-cols-[0.8fr_2.2fr]'>
+    <div className='grid gap-5 lg:grid-cols-[minmax(17rem,0.8fr)_2.2fr]'>
         <div data-reveal='text-left' className='flex flex-col justify-between gap-6 rounded-md bg-[#10291f] p-6 text-white sm:p-7'>
             <div>
                 <div className='flex items-center gap-3'>
