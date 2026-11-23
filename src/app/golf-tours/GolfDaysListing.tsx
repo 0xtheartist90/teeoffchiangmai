@@ -20,7 +20,7 @@ const enquiry = (course: GolfCourse, golfers: number) =>
         `Hi, I would like to check tee times for ${course.name} for ${golfers} golfer${golfers > 1 ? 's' : ''}. Our date and hotel are: `
     );
 
-const facilityText = (value: Facility | undefined) => (value === true ? 'Yes' : value === false ? 'No' : 'To be confirmed');
+const facilityText = (value: Facility | undefined) => (value === true ? 'Yes' : value === false ? 'No' : 'Not listed — ask us');
 
 const CourseRow = ({ course, flip, bestRated }: { course: GolfCourse; flip: boolean; bestRated: boolean }) => {
     const [golfers, setGolfers] = useState(2);
@@ -167,7 +167,7 @@ const CourseRow = ({ course, flip, bestRated }: { course: GolfCourse; flip: bool
                     <dl className='grid gap-x-6 gap-y-3 pb-5 text-sm sm:grid-cols-2'>
                         <div>
                             <dt className='text-[0.6rem] font-semibold tracking-[0.2em] text-slate-500 uppercase'>Transfer from central Chiang Mai</dt>
-                            <dd className='mt-0.5 text-[#14382a]'>{details?.transfer ?? 'To be confirmed'}</dd>
+                            <dd className='mt-0.5 text-[#14382a]'>{details?.transfer ?? 'Ask us'}</dd>
                         </div>
                         <div>
                             <dt className='text-[0.6rem] font-semibold tracking-[0.2em] text-slate-500 uppercase'>Driving range</dt>
@@ -185,7 +185,7 @@ const CourseRow = ({ course, flip, bestRated }: { course: GolfCourse; flip: bool
                         </div>
                         <div className='sm:col-span-2'>
                             <dt className='text-[0.6rem] font-semibold tracking-[0.2em] text-slate-500 uppercase'>Other facilities</dt>
-                            <dd className='mt-0.5 text-[#14382a]'>{details?.other.length ? details.other.join(' · ') : 'To be confirmed'}</dd>
+                            <dd className='mt-0.5 text-[#14382a]'>{details?.other.length ? details.other.join(' · ') : 'Ask us'}</dd>
                         </div>
                     </dl>
                 </details>

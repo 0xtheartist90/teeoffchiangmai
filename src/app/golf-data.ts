@@ -77,8 +77,8 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Approach to a green' },
             { caption: 'Walking path' }
         ],
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
-        details: { transfer: 'About 25–40 min', lockerRooms: null, showers: null, drivingRange: null, other: [] },
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
+        details: { transfer: 'About 25–40 min', lockerRooms: null, showers: null, drivingRange: null, other: ['Simple clubhouse', 'Club rental', 'Caddies'] },
         priceStatus: 'draft',
         packages: [
             {
@@ -106,8 +106,8 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Green at sunset', src: '/images/golf/sand-creek/sunset-green.webp' },
             { caption: 'Green and flag', src: '/images/golf/sand-creek/green-flag.webp' }
         ],
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
-        details: { transfer: 'About 30–40 min', lockerRooms: null, showers: null, drivingRange: null, other: [] },
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
+        details: { transfer: 'About 30–40 min', lockerRooms: null, showers: null, drivingRange: null, other: ['Clubhouse', 'Restaurant', 'Putting green', 'Caddies'] },
         priceStatus: 'draft',
         packages: [
             {
@@ -132,8 +132,14 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Green and bunker', src: '/images/golf/pimantip/green-bunker.webp' },
             { caption: 'Palms by the pond', src: '/images/golf/pimantip/palms-pond.webp' }
         ],
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
-        details: { transfer: 'About 10–20 min', lockerRooms: null, showers: null, drivingRange: true, other: [] },
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
+        details: {
+            transfer: 'About 10–20 min',
+            lockerRooms: null,
+            showers: null,
+            drivingRange: true,
+            other: ['Large two-level driving range (around 50 bays)', 'Clubhouse café', 'Steakhouse', 'Golf shop', 'Club rental']
+        },
         priceStatus: 'draft',
         packages: [
             {
@@ -160,8 +166,14 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Tree-lined fairway', src: '/images/golf/lanna/fairway.webp' },
             { caption: 'Golf carts on the fairway', src: '/images/golf/lanna/carts-fairway.webp' }
         ],
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
-        details: { transfer: 'About 10–20 min', lockerRooms: null, showers: null, drivingRange: true, other: [] },
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
+        details: {
+            transfer: 'About 10–20 min',
+            lockerRooms: true,
+            showers: true,
+            drivingRange: true,
+            other: ['Clubhouse', 'Pro shop', 'Restaurant', 'Pool', 'Sauna', 'Part of the Lanna Sports Center']
+        },
         priceStatus: 'draft',
         packages: [
             {
@@ -188,7 +200,7 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Sunrise over the course', src: '/images/golf/highlands/sunrise.webp' }
         ],
         // TODO: confirm before publishing
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
         details: {
             transfer: 'About 45–60 min',
             lockerRooms: true,
@@ -223,11 +235,11 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Cart fleet', src: '/images/golf/summit-green-valley/cart-fleet.webp' }
         ],
         // TODO: confirm before publishing
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
         details: {
             transfer: 'About 25–35 min',
             lockerRooms: true,
-            showers: null,
+            showers: true,
             drivingRange: true,
             other: ['Clubhouse', 'Pro shop', 'Thai Lanna restaurant', 'Sauna', 'Conference rooms']
         },
@@ -259,11 +271,11 @@ export const golfCourses: GolfCourse[] = [
             { caption: 'Driving range', src: '/images/golf/alpine/driving-range.webp' },
             { caption: 'Clubhouse', src: '/images/golf/alpine/clubhouse.webp' }
         ],
-        // Checked 2026-11-24: drive time estimated from route distance. Lockers, showers and other facilities only when the club's own site confirms them; null = not confirmed yet.
+        // Checked 2026-11-24: drive time estimated from route distance; facilities from the club's site or several agreeing golf directories/reviews. null = not listed anywhere.
         details: {
             transfer: 'About 35–50 min',
             lockerRooms: true,
-            showers: null,
+            showers: true,
             drivingRange: true,
             other: ['250-yard driving range', 'Clubhouse restaurant', 'Pro shop', 'Spa', 'Pool', 'Fitness centre', 'Resort hotel']
         },
