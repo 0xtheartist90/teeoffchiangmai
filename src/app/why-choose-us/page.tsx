@@ -62,8 +62,7 @@ const WhyChooseUsPage = () => {
                         </h2>
                         <div className='mt-6 grid gap-5 text-base leading-8 text-slate-600'>
                             <p>
-                                Tee Off Chiang Mai is operated by NORTHBOUND TRAVEL CO., LTD., the team behind Chiang Mai Driver by
-                                May. For over five years, we’ve arranged private and custom tours across Chiang Mai and Northern
+                                Tee Off Chiang Mai is run by the team behind Chiang Mai Driver by May. For over five years, we’ve arranged private and custom tours across Chiang Mai and Northern
                                 Thailand.
                             </p>
                             <p>
@@ -82,9 +81,6 @@ const WhyChooseUsPage = () => {
                                 <ArrowUpRight className='size-3.5' />
                             </Link>
                         </div>
-                        <p className='mt-6 text-[0.62rem] font-semibold tracking-[0.24em] text-slate-500 uppercase'>
-                            Operated by NORTHBOUND TRAVEL CO., LTD.
-                        </p>
                         <dl className='mt-10 grid grid-cols-3 gap-4 border-t border-[#14382a]/12 pt-6'>
                             <div>
                                 <dt className='text-[0.62rem] font-semibold tracking-[0.22em] text-slate-500 uppercase'>Years of tours</dt>
@@ -99,6 +95,7 @@ const WhyChooseUsPage = () => {
                                 <dd className='travel-display mt-1 text-4xl text-[#14382a]'>1</dd>
                             </div>
                         </dl>
+                        <p className='mt-6 text-xs text-slate-500'>Operated by NORTHBOUND TRAVEL CO., LTD.</p>
                     </div>
                     <div data-reveal='image-left' className='relative'>
                         {/* Swap for a photo of the owners on the course when available */}
