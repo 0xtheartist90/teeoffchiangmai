@@ -8,7 +8,9 @@ import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
 import { services } from '@/app/content';
 import { bookingLink } from '@/app/golf-data';
-import { patternedLight } from '@/app/section-backgrounds';
+import { beigeSection, patternedLight } from '@/app/section-backgrounds';
+import GoogleReviewsBanner from '@/app/GoogleReviewsBanner';
+import { chiangMaiDriverUrl } from '@/app/reviews-data';
 
 export const metadata: Metadata = {
     title: 'Why Choose Us | Tee Off Chiang Mai',
@@ -60,19 +62,29 @@ const WhyChooseUsPage = () => {
                         </h2>
                         <div className='mt-6 grid gap-5 text-base leading-8 text-slate-600'>
                             <p>
-                                We’re the team behind Chiang Mai Driver. For more than five years we’ve arranged private and custom
-                                tours across Chiang Mai and Northern Thailand.
+                                Tee Off Chiang Mai is operated by NORTHBOUND TRAVEL CO., LTD., the team behind Chiang Mai Driver by
+                                May. For over five years, we’ve arranged private and custom tours across Chiang Mai and Northern
+                                Thailand.
                             </p>
                             <p>
-                                We love golf ourselves. And we kept hearing the same question from guests: “Can we play a round while
-                                we’re here?” So we started Tee Off Chiang Mai — to make booking golf here as easy as booking a day
-                                trip.
-                            </p>
-                            <p>
-                                We know these courses, the drive there, and the best time to tee off. You get one point of contact,
-                                our own drivers, and a day planned the way golfers like it.
+                                Our own passion for golf inspired us to make booking a round easy for visiting golfers. From tee
+                                times and equipment rental to private transfers and sightseeing, we bring everything together
+                                through one point of contact.
                             </p>
                         </div>
+                        <div className='mt-8 flex flex-col gap-3 sm:flex-row sm:items-center'>
+                            <Link
+                                href={chiangMaiDriverUrl}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='btn-lux inline-flex items-center justify-center gap-2'>
+                                Explore Chiang Mai Driver by May
+                                <ArrowUpRight className='size-3.5' />
+                            </Link>
+                        </div>
+                        <p className='mt-6 text-[0.62rem] font-semibold tracking-[0.24em] text-slate-500 uppercase'>
+                            Operated by NORTHBOUND TRAVEL CO., LTD.
+                        </p>
                         <dl className='mt-10 grid grid-cols-3 gap-4 border-t border-[#14382a]/12 pt-6'>
                             <div>
                                 <dt className='text-[0.62rem] font-semibold tracking-[0.22em] text-slate-500 uppercase'>Years of tours</dt>
@@ -102,6 +114,21 @@ const WhyChooseUsPage = () => {
                             className='absolute -bottom-8 -left-8 hidden aspect-square w-44 rounded-md border-4 border-[#f8f5ee] object-cover shadow-xl sm:block'
                         />
                     </div>
+                </div>
+            </section>
+
+            {/* Google reviews of Chiang Mai Driver by May */}
+            <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={beigeSection}>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
+                    <div data-reveal='text-left' className='mb-10 max-w-2xl'>
+                        <h2 className='travel-display text-[2.6rem] leading-tight text-[#14382a] sm:text-[3.4rem]'>
+                            What our guests <span className='italic'>say</span>
+                        </h2>
+                        <p className='mt-3 text-base text-slate-600'>
+                            Reviews from guests of Chiang Mai Driver by May, our private tour service on Google.
+                        </p>
+                    </div>
+                    <GoogleReviewsBanner />
                 </div>
             </section>
 

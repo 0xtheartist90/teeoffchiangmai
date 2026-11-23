@@ -27,6 +27,19 @@ export type GalleryShot = {
     src?: string;
 };
 
+/** true = available, false = not available, null = not confirmed yet */
+export type Facility = boolean | null;
+
+export type CourseDetails = {
+    /** Approximate drive from central Chiang Mai, e.g. "25–35 min". */
+    transfer: string;
+    lockerRooms: Facility;
+    showers: Facility;
+    drivingRange: Facility;
+    /** Other facilities, e.g. restaurant, pro shop, putting green. */
+    other: string[];
+};
+
 export type GolfCourse = {
     slug: string;
     name: string;
@@ -36,6 +49,10 @@ export type GolfCourse = {
     playOptions: string;
     drivingRange: boolean;
     description: string;
+    /** Extra availability note shown on the course card (e.g. optional carts). */
+    note?: string;
+    /** Expandable course details. Only fill with facts verified with the club or its official site. */
+    details?: CourseDetails;
     /** Hero photo for the card. Leave empty until an approved photo is available. */
     image?: string;
     gallery: GalleryShot[];
@@ -76,10 +93,10 @@ export const golfCourses: GolfCourse[] = [
         shortName: 'Sand Creek',
         rating: 3.5,
         format: '2 × 9 holes',
-        playOptions: 'Walking or shared cart',
+        playOptions: 'Walking only',
         drivingRange: false,
-        description:
-            'A compact nine-hole course with enough challenge to make the second loop interesting. Walk or share a cart.',
+        description: 'A compact nine-hole course with enough challenge to make the second loop interesting. Played walking.',
+        note: 'Golf carts are sometimes available for an additional 400 THB per cart and can be shared by up to two golfers. Subject to availability.',
         image: '/images/golf/sand-creek/lake-bunkers.webp',
         gallery: [
             { caption: 'Wooden bridge over the water', src: '/images/golf/sand-creek/bridge.webp' },
@@ -94,12 +111,6 @@ export const golfCourses: GolfCourse[] = [
                 basis: 'walking',
                 perGolfer: [2500, 1600, 1300, 1100],
                 total: [2500, 3200, 3900, 4400]
-            },
-            {
-                label: 'Shared cart',
-                basis: 'cart',
-                perGolfer: [2900, 1800, 1600, 1300],
-                total: [2900, 3600, 4800, 5200]
             }
         ]
     },
@@ -246,7 +257,7 @@ export const priceIncludes = [
     'Optional convenience-store or lunch stop on the way'
 ];
 
-export const priceExcludes = ['Caddie charges', 'Club rental', 'Food and drinks'];
+export const priceExcludes = ['Caddie fee', 'Caddie tip (mandatory, paid separately)', 'Club rental', 'Food and drinks'];
 
 export const formatThb = (value: number) => `${value.toLocaleString('en-US')} THB`;
 

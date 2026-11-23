@@ -14,6 +14,12 @@ import { Price } from '@/app/currency';
 const HolidayPackages = () => {
     const [rounds, setRounds] = useState<RoundsPerWeek>(3);
     const [golfers, setGolfers] = useState<1 | 2 | 3 | 4>(2);
+    // "Best rated": the package whose courses have the highest average Northbound rating
+    const averageRating = (id: (typeof holidayTiers)[number]['id']) => {
+        const { courses } = getHolidayPackage(id, rounds);
+        return courses.reduce((sum, c) => sum + c.rating, 0) / courses.length;
+    };
+    const bestRatedTier = [...holidayTiers].sort((a, b) => averageRating(b.id) - averageRating(a.id))[0].id;
     const changeGolfers = (delta: number) => setGolfers((n) => Math.min(4, Math.max(1, n + delta)) as 1 | 2 | 3 | 4);
 
     return (
@@ -73,7 +79,7 @@ const HolidayPackages = () => {
             <div className='mt-10 grid gap-5 lg:grid-cols-3'>
                 {holidayTiers.map((tier, index) => {
                     const pkg = getHolidayPackage(tier.id, rounds);
-                    const featured = tier.id === 'classic';
+                    const featured = tier.id === bestRatedTier;
                     const enquiry = whatsappWithText(
                         `Hi, I'm interested in the ${tier.name} golf holiday with ${rounds} rounds per week (${pkg.courses
                             .map((c) => c.shortName)
@@ -91,7 +97,7 @@ const HolidayPackages = () => {
                                 <div className='absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,20,0.1)_0%,rgba(10,28,20,0.75)_100%)]' />
                                 {featured ? (
                                     <span className='absolute top-4 right-4 rounded-full bg-[#c9a85a] px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] text-[#10291f] uppercase'>
-                                        Most popular
+                                        Best rated
                                     </span>
                                 ) : null}
                                 <div className='absolute inset-x-6 bottom-5 text-white'>

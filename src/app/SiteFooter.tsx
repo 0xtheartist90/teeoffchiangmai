@@ -124,7 +124,7 @@ const SiteFooter = () => {
             <div className='relative border-t border-white/10'>
                 <div className='mx-auto flex max-w-[90rem] flex-col gap-2 px-5 py-6 text-xs text-white/45 sm:flex-row sm:justify-between sm:px-6 lg:px-8'>
                     <p>© {new Date().getFullYear()} Tee Off Chiang Mai. Golf holidays and golf days in Northern Thailand.</p>
-                    <p>From the team behind Chiang Mai Driver.</p>
+                    <p>Operated by NORTHBOUND TRAVEL CO., LTD. · From the team behind Chiang Mai Driver by May.</p>
                 </div>
             </div>
         </footer>

@@ -7,7 +7,7 @@ export const steps = [
     },
     {
         title: 'We put the day together',
-        text: 'We check tee-time availability, confirm your price, and arrange your transfers, golf cart, caddie, or rental clubs as needed.'
+        text: 'We check tee-time availability, confirm your price, and arrange your transfers, golf cart, caddie, or rental clubs as needed. Caddie tips are mandatory and paid separately.'
     },
     {
         title: 'We pick you up',
@@ -44,7 +44,7 @@ export const services = [
 export const faqs = [
     {
         question: 'What’s included in the golf day price?',
-        answer: 'The listed golf day prices include the 18-hole green fee and private round-trip hotel transfers within 20 km of Chiang Mai city centre. Golf carts are included where shown. Caddie charges, club rental, food, and drinks are paid separately.'
+        answer: 'The listed golf day prices include the 18-hole green fee and private round-trip hotel transfers within 20 km of Chiang Mai city centre. Golf carts are included where shown. Caddie fees, club rental, food and drinks are not included. Caddie tips are mandatory and paid separately.'
     },
     {
         question: 'Can we stop at a convenience store or have dinner after golf?',
@@ -52,7 +52,7 @@ export const faqs = [
     },
     {
         question: 'Can you arrange rental clubs and caddies?',
-        answer: 'Yes. Tell us what you need when you enquire and we’ll check availability and let you know the charges before you book.'
+        answer: 'Yes. Tell us what you need when you enquire and we’ll check availability and confirm the caddie fee and club rental price before you book. Caddie tips are mandatory and paid separately, directly to your caddie.'
     },
     {
         question: 'Can you arrange a booking for a larger group?',

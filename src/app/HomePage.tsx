@@ -6,8 +6,9 @@ import { ArrowRight, ArrowUpRight, CalendarCheck, CarFront, Flag, MapPinned, Mes
 
 import CourseImage from '@/app/CourseImage';
 import PackageCards from '@/app/PackageCards';
+import GoogleReviewsBanner from '@/app/GoogleReviewsBanner';
 import ParallaxBackground from '@/app/ParallaxBackground';
-import WeekPlanner from '@/app/golf-holidays/WeekPlanner';
+import { chiangMaiDriverUrl } from '@/app/reviews-data';
 import RatingStars from '@/app/RatingStars';
 import SiteFooter from '@/app/SiteFooter';
 import SiteHeader from '@/app/SiteHeader';
@@ -44,13 +45,13 @@ const courseMarquee = [
 const heroUsps = [
     { label: '7 courses around Chiang Mai', icon: Flag },
     { label: 'Private hotel transfers', icon: CarFront },
-    { label: 'Clubs & caddies on request', icon: Users },
+    { label: 'Rental clubs on request', icon: Users },
     { label: '5+ years of local tours', icon: MapPinned }
 ];
 
 const shortSteps = [
     { title: 'Tell us your plan', text: 'Dates, golfers, hotel and courses.', icon: MessageCircle },
-    { title: 'We arrange it', text: 'Tee times, transfers, carts, caddies or clubs.', icon: CalendarCheck },
+    { title: 'We arrange it', text: 'Tee times, transfers, carts or rental clubs.', icon: CalendarCheck },
     { title: 'We pick you up', text: 'Hotel to course, and back again.', icon: CarFront }
 ]
 
@@ -98,12 +99,9 @@ const HomePage = () => {
                             Explore Golf Holidays
                             <ArrowRight className='size-3.5' />
                         </Link>
-                        <Link
-                            href={bookingLink}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
-                            Book on WhatsApp
+                        <Link href='/golf-tours' className='btn-lux-ghost-light inline-flex items-center justify-center gap-2'>
+                            Book a Golf Day
+                            <ArrowRight className='size-3.5' />
                         </Link>
                     </div>
                 </div>
@@ -143,7 +141,7 @@ const HomePage = () => {
                     <div className='mt-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left'>
                         <p className='text-xs text-slate-500'>Golf price per golfer, group of 4. Also 2× or 4× golf per week.</p>
                         <Link
-                            href='#plan-your-week'
+                            href='/golf-holidays#plan-your-week'
                             className='inline-flex items-center gap-2 border-b border-[#c9a85a]/70 pb-1 text-[0.7rem] font-semibold tracking-[0.2em] text-[#14382a] uppercase'>
                             Or plan your own week
                             <ArrowRight className='size-3.5' />
@@ -157,14 +155,19 @@ const HomePage = () => {
                 <ParallaxBackground src='/images/golf/summit-green-valley/aerial-clubhouse.webp' />
                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0.82)_0%,rgba(10,28,20,0.7)_40%,rgba(10,28,20,0.88)_100%)]' />
                 <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
-                    <div data-reveal className='mx-auto mb-10 max-w-2xl text-center text-white'>
+                    <div data-reveal='soft-scale' className='mx-auto max-w-2xl text-center text-white'>
                         <h2 className='travel-display text-[2.6rem] leading-tight sm:text-[3.4rem]'>
                             Or plan <span className='text-[#e2c886] italic'>your own week</span>
                         </h2>
-                        <p className='mt-3 text-base text-white/75'>Choose a course or a day off for each day.</p>
-                    </div>
-                    <div data-reveal='soft-scale'>
-                        <WeekPlanner />
+                        <p className='mt-3 text-base text-white/75'>
+                            Pick a course or a day trip for each day and see your price straight away.
+                        </p>
+                        <Link
+                            href='/golf-holidays#plan-your-week'
+                            className='btn-lux-gold mt-8 inline-flex items-center justify-center gap-2'>
+                            Open the week planner
+                            <ArrowRight className='size-3.5' />
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -284,11 +287,36 @@ const HomePage = () => {
                                     imgClassName='transition duration-700 group-hover:scale-105'
                                 />
                                 <div className='absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,28,20,0)_40%,rgba(10,28,20,0.85)_100%)]' />
-                                <RatingStars rating={course.rating} className='text-[#e2c886] [&_svg]:size-3' />
+                                <RatingStars rating={course.rating} className='text-[#e2c886]' />
                                 <p className='travel-display mt-1 text-lg leading-tight'>{course.shortName}</p>
                             </Link>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Chiang Mai Driver by May + Google reviews */}
+            <section className='leaf-overlay relative border-t border-[#14382a]/8 py-20 sm:py-24' style={beigeSection}>
+                <div className='mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-8'>
+                    <div className='mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between'>
+                        <div data-reveal='text-left' className='max-w-2xl'>
+                            <h2 className='travel-display text-[2.4rem] leading-tight text-[#14382a] sm:text-5xl'>
+                                From the team behind <span className='italic'>Chiang Mai Driver by May</span>
+                            </h2>
+                            <p className='mt-3 text-base text-slate-600'>
+                                Five years of private tours in Northern Thailand. Here’s what their guests say on Google.
+                            </p>
+                        </div>
+                        <Link
+                            href={chiangMaiDriverUrl}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='btn-lux-ghost inline-flex w-fit items-center gap-2'>
+                            Explore Chiang Mai Driver by May
+                            <ArrowUpRight className='size-3.5' />
+                        </Link>
+                    </div>
+                    <GoogleReviewsBanner />
                 </div>
             </section>
 
